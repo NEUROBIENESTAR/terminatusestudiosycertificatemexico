@@ -133,17 +133,21 @@ footer {
     <div class="cards">
         <div class="card"><h3>Secundaria</h3><p>Finaliza tu educación básica rápidamente.</p></div>
         <div class="card"><h3>Preparatoria</h3><p>Opciones flexibles para concluir tu bachillerato.</p></div>
-        <div class="card"><h3>Licenciatura</h3><p>Obtén tu título con asesoría completa.</p></div>
+        <div class="card">
+            <h3>Licenciatura</h3>
+            <p>Obtén tu título con asesoría completa.</p>
+            <label for="lic-select" style="font-weight:bold; font-size:13px; color:#555;">Selecciona tu carrera:</label>
+            <select id="lic-select" onchange="mostrarInfoLicenciatura(this.value)" style="width:100%; margin-top:8px; padding:8px; border:1px solid #d1d5db; border-radius:6px; font-size:14px; cursor:pointer;">
+                <option value="">-- Elige una opción --</option>
+                <option value="administracion">Administración</option>
+                <option value="derecho">Derecho</option>
+                <option value="pedagogia">Pedagogía</option>
+            </select>
+            <div id="info-lic" style="margin-top:10px; font-size:13px; color:#374151; display:none; background:#f0fdf4; border-left:3px solid #16a34a; padding:8px; border-radius:4px;"></div>
+            <a id="btn-lic" href="#" style="display:none; margin-top:10px; background:#16a34a; color:white; padding:8px 14px; border-radius:5px; text-decoration:none; font-size:13px; font-weight:bold;">Ver más información</a>
+        </div>
         <div class="card"><h3>Certificaciones</h3><p>Certificaciones oficiales con validez nacional.</p></div>
     </div>
-</section>
-
-<!-- PLANES -->
-
-<section style="background:#0f172a; color:white; border-radius:10px;">
-    <h2>Planes accesibles</h2>
-    <p>Desde $1,600 mensuales</p>
-    <p>Modalidad exprés o flexible</p>
 </section>
 
 <!-- TESTIMONIOS -->
@@ -254,6 +258,34 @@ footer {
 </style>
 
 <script>
+function mostrarInfoLicenciatura(val) {
+    const info = document.getElementById("info-lic");
+    const btn = document.getElementById("btn-lic");
+    const datos = {
+        administracion: {
+            texto: "Licenciatura en Administración: enfoque en negocios, gestión empresarial y emprendimiento. Duración: 6 meses intensivo o hasta 1.5 años.",
+            link: "Plan_de_Pagos.html"
+        },
+        derecho: {
+            texto: "Licenciatura en Derecho: formación jurídica con validez oficial. Duración: 6 meses intensivo o hasta 1.5 años.",
+            link: "Plan_de_Pagos.html"
+        },
+        pedagogia: {
+            texto: "Licenciatura en Pedagogía: especialización en educación y desarrollo humano. Duración: 6 meses intensivo o hasta 1.5 años.",
+            link: "Plan_de_Pagos.html"
+        }
+    };
+    if (val && datos[val]) {
+        info.style.display = "block";
+        info.textContent = datos[val].texto;
+        btn.style.display = "inline-block";
+        btn.href = datos[val].link;
+    } else {
+        info.style.display = "none";
+        btn.style.display = "none";
+    }
+}
+
 function toggleChat() {
     let chat = document.getElementById("chatbot");
     chat.style.display = (chat.style.display === "none") ? "block" : "none";
