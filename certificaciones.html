@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Certificaciones Oficiales SEP · CONOCER</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0d1b2a;--gold:#c9a84c;--gold2:#e8c96a;--cream:#faf8f3;--ink:#1a1a2e;--muted:#6b7280;--border:#e8e4dc;--green:#16a34a;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Outfit',sans-serif;background:var(--cream);color:var(--ink);overflow-x:hidden;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,27,42,0.97);backdrop-filter:blur(12px);padding:0 40px;height:64px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(201,168,76,0.2);}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--gold);font-weight:600;text-decoration:none;white-space:nowrap;}
+.nav-links{display:flex;gap:4px;align-items:center;}
+.nav-links a{color:#9ca3af;font-size:13px;text-decoration:none;padding:6px 10px;border-radius:6px;transition:color 0.2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--gold);}
+.nav-dropdown{position:relative;}
+.nav-dropdown>a{display:flex;align-items:center;gap:4px;}
+.nav-dropdown>a::after{content:'▾';font-size:10px;opacity:0.6;}
+.nav-dropdown-menu{display:none;position:absolute;top:calc(100% + 8px);left:0;background:var(--navy);border:1px solid rgba(201,168,76,0.2);border-radius:10px;padding:8px;min-width:220px;box-shadow:0 16px 40px rgba(0,0,0,0.4);z-index:200;}
+.nav-dropdown:hover .nav-dropdown-menu{display:block;}
+.nav-dropdown-menu a{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:7px;color:#9ca3af;font-size:13px;text-decoration:none;transition:all 0.15s;}
+.nav-dropdown-menu a:hover{background:rgba(201,168,76,0.1);color:var(--gold);}
+.nav-cta{background:var(--gold);color:var(--navy)!important;padding:8px 18px;border-radius:6px;font-weight:600!important;}
+.nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;}
+.nav-hamburger span{width:22px;height:2px;background:var(--gold);border-radius:2px;}
+.mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;background:var(--navy);z-index:99;padding:20px;border-bottom:1px solid rgba(201,168,76,0.2);}
+.mobile-menu.open{display:block;}
+.mobile-menu a{display:block;color:#9ca3af;text-decoration:none;padding:12px 16px;border-radius:8px;font-size:14px;transition:all 0.15s;}
+.mobile-menu a:hover{background:rgba(201,168,76,0.1);color:var(--gold);}
+.m-section{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(201,168,76,0.5);padding:16px 16px 6px;margin-top:8px;}
+.m-cta{background:var(--gold);color:var(--navy)!important;font-weight:600;margin-top:12px;text-align:center;}
+
+/* HERO */
+.hero{min-height:60vh;background:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url('https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=1600&q=80') center/cover;color:white;display:flex;align-items:center;justify-content:center;text-align:center;padding:140px 20px 80px;}
+.hero-inner{max-width:700px;}
+.eyebrow{font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:flex;align-items:center;justify-content:center;gap:10px;}
+.eyebrow span{width:30px;height:1px;background:var(--gold);display:inline-block;}
+h1{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,5vw,64px);font-weight:700;line-height:1.1;margin-bottom:16px;}
+h1 em{color:var(--gold);font-style:normal;}
+.hero-sub{font-size:17px;color:rgba(255,255,255,0.8);margin-bottom:36px;line-height:1.6;font-weight:300;}
+.btn-wa{display:inline-flex;align-items:center;gap:8px;background:var(--green);color:#fff;padding:14px 28px;border-radius:8px;text-decoration:none;font-weight:600;font-size:15px;transition:all 0.2s;}
+.btn-wa:hover{background:#15803d;transform:translateY(-2px);box-shadow:0 8px 24px rgba(22,163,74,0.4);}
+
+/* SECTION */
+.section{max-width:1100px;margin:0 auto;padding:80px 30px;}
+.section-tag{font-size:11px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,4vw,44px);font-weight:700;color:var(--navy);margin-bottom:14px;line-height:1.15;}
+.section-desc{font-size:15px;color:var(--muted);line-height:1.7;max-width:560px;margin-bottom:48px;}
+
+/* CERT CARDS */
+.cert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;}
+.cert-card{background:#fff;border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:all 0.25s;}
+.cert-card:hover{transform:translateY(-5px);box-shadow:0 20px 50px rgba(0,0,0,0.1);border-color:var(--gold);}
+.cert-img{width:100%;height:160px;object-fit:cover;display:block;}
+.cert-body{padding:24px;}
+.cert-tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;background:rgba(201,168,76,0.1);color:var(--gold);border:1px solid rgba(201,168,76,0.3);border-radius:20px;padding:3px 10px;margin-bottom:10px;}
+.cert-icon{font-size:30px;margin-bottom:10px;display:block;}
+.cert-name{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--navy);margin-bottom:8px;}
+.cert-desc{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:16px;}
+.cert-features{display:flex;flex-direction:column;gap:6px;margin-bottom:16px;}
+.cert-feat{font-size:12px;color:var(--ink);display:flex;align-items:flex-start;gap:6px;}
+.cert-feat::before{content:'✓';color:var(--green);font-weight:700;flex-shrink:0;}
+.cert-cta{display:inline-flex;align-items:center;gap:6px;background:var(--green);color:#fff;padding:9px 18px;border-radius:7px;text-decoration:none;font-size:13px;font-weight:600;transition:all 0.2s;}
+.cert-cta:hover{background:#15803d;}
+
+/* COMING SOON CARDS */
+.cert-card.coming{opacity:0.7;}
+.cert-card.coming .cert-tag{background:rgba(107,114,128,0.1);color:var(--muted);border-color:var(--border);}
+.coming-label{font-size:11px;color:var(--muted);font-style:italic;margin-top:10px;}
+
+/* INFO STRIP */
+.info-strip{background:var(--navy);padding:50px 40px;}
+.info-strip-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:32px;text-align:center;}
+.strip-item{}
+.strip-icon{font-size:32px;margin-bottom:10px;}
+.strip-title{font-size:14px;font-weight:600;color:var(--gold);margin-bottom:4px;}
+.strip-desc{font-size:13px;color:#94a3b8;line-height:1.5;}
+
+/* CTA */
+.cta-bg{background:linear-gradient(135deg,var(--navy) 0%,#0d2137 100%);text-align:center;padding:90px 40px;position:relative;overflow:hidden;}
+.cta-bg::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(201,168,76,0.1) 0%,transparent 60%);}
+.cta-bg h2{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,5vw,52px);color:white;font-weight:700;margin-bottom:14px;position:relative;}
+.cta-bg p{color:#94a3b8;font-size:16px;margin-bottom:36px;position:relative;}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative;}
+
+footer{background:#080f18;padding:24px 40px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+footer p,footer a{font-size:12px;color:#4b5563;text-decoration:none;}
+footer a:hover{color:var(--gold);}
+
+@media(max-width:800px){nav{padding:0 20px;}.nav-links{display:none!important;}.nav-hamburger{display:flex!important;}.section{padding:60px 20px;}.info-strip{padding:50px 20px;}.cta-bg{padding:60px 20px;}footer{flex-direction:column;text-align:center;padding:24px 20px;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Educación &amp; Cert. MX</a>
+  <div class="nav-links">
+    <a href="index.html">Inicio</a>
+    <div class="nav-dropdown">
+      <a href="#" class="active">Programas</a>
+      <div class="nav-dropdown-menu">
+        <a href="administracion.html"><span>🎓</span> Licenciatura en Administración</a>
+        <a href="preparatoria.html"><span>📗</span> Preparatoria</a>
+        <a href="secundaria.html"><span>📘</span> Secundaria</a>
+        <a href="certificaciones.html" style="color:var(--gold)"><span>📜</span> Certificaciones</a>
+      </div>
+    </div>
+    <a href="Plan_de_Pagos.html" class="nav-cta">📋 Planes de Pago</a>
+    <a href="https://wa.me/529841275583" target="_blank" style="color:#16a34a;font-weight:600;">💬 WhatsApp</a>
+  </div>
+  <div class="nav-hamburger" onclick="document.getElementById('mobileMenu').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">🏠 Inicio</a>
+  <div class="m-section">Programas</div>
+  <a href="administracion.html">🎓 Licenciatura en Administración</a>
+  <a href="preparatoria.html">📗 Preparatoria</a>
+  <a href="secundaria.html">📘 Secundaria</a>
+  <a href="certificaciones.html">📜 Certificaciones</a>
+  <a href="Plan_de_Pagos.html">📋 Planes de Pago</a>
+  <a href="https://wa.me/529841275583" target="_blank" class="m-cta">💬 WhatsApp</a>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow"><span></span>SEP · CONOCER · Validez Nacional<span></span></div>
+    <h1>Certificaciones<br><em>Oficiales en México</em></h1>
+    <p class="hero-sub">Obtén una certificación con reconocimiento nacional que impulse tu carrera profesional. Proceso ágil con asesoría completa.</p>
+    <a href="https://wa.me/529841275583?text=Hola,%20me%20interesan%20las%20certificaciones" target="_blank" class="btn-wa">💬 Consultar certificaciones</a>
+  </div>
+</div>
+
+<!-- CERTIFICACIONES DISPONIBLES -->
+<div style="background:#fff;">
+<div class="section">
+  <div class="section-tag">Disponibles Ahora</div>
+  <div class="section-title">Certificaciones disponibles</div>
+  <p class="section-desc">Todas con validez oficial en la República Mexicana. Complementa tu licenciatura o certifícate de forma independiente.</p>
+
+  <div class="cert-grid">
+
+    <div class="cert-card">
+      <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=500&q=80" alt="Recursos Humanos" class="cert-img">
+      <div class="cert-body">
+        <span class="cert-tag">CONOCER · Disponible</span>
+        <div class="cert-name">👥 Recursos Humanos</div>
+        <p class="cert-desc">Gestión del talento, reclutamiento, nóminas, clima organizacional y desarrollo del personal.</p>
+        <div class="cert-features">
+          <div class="cert-feat">Reclutamiento y selección de personal</div>
+          <div class="cert-feat">Administración de nóminas y prestaciones</div>
+          <div class="cert-feat">Clima y cultura organizacional</div>
+          <div class="cert-feat">Capacitación y desarrollo</div>
+        </div>
+        <a href="https://wa.me/529841275583?text=Hola,%20me%20interesa%20la%20certificación%20en%20Recursos%20Humanos" target="_blank" class="cert-cta">💬 Solicitar información</a>
+      </div>
+    </div>
+
+    <div class="cert-card">
+      <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&q=80" alt="Mercadotecnia" class="cert-img">
+      <div class="cert-body">
+        <span class="cert-tag">CONOCER · Disponible</span>
+        <div class="cert-name">📣 Mercadotecnia</div>
+        <p class="cert-desc">Estrategias de marketing, branding, ventas, publicidad digital y posicionamiento de marca.</p>
+        <div class="cert-features">
+          <div class="cert-feat">Marketing digital y redes sociales</div>
+          <div class="cert-feat">Estrategias de ventas y branding</div>
+          <div class="cert-feat">Publicidad y posicionamiento</div>
+          <div class="cert-feat">Análisis de mercado</div>
+        </div>
+        <a href="https://wa.me/529841275583?text=Hola,%20me%20interesa%20la%20certificación%20en%20Mercadotecnia" target="_blank" class="cert-cta">💬 Solicitar información</a>
+      </div>
+    </div>
+
+    <div class="cert-card">
+      <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=500&q=80" alt="Bienestar y Spa" class="cert-img">
+      <div class="cert-body">
+        <span class="cert-tag">CONOCER · Disponible</span>
+        <div class="cert-name">🌿 Bienestar &amp; Spa</div>
+        <p class="cert-desc">Administración de centros de bienestar, gestión de servicios spa, salud integral y atención al cliente.</p>
+        <div class="cert-features">
+          <div class="cert-feat">Gestión de centros de bienestar</div>
+          <div class="cert-feat">Protocolos de servicios spa</div>
+          <div class="cert-feat">Salud integral y nutrición básica</div>
+          <div class="cert-feat">Atención y fidelización de clientes</div>
+        </div>
+        <a href="https://wa.me/529841275583?text=Hola,%20me%20interesa%20la%20certificación%20en%20Bienestar%20y%20Spa" target="_blank" class="cert-cta">💬 Solicitar información</a>
+      </div>
+    </div>
+
+    <div class="cert-card coming">
+      <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=500&q=80" alt="Próximamente" class="cert-img">
+      <div class="cert-body">
+        <span class="cert-tag">Próximamente</span>
+        <div class="cert-name">💻 Tecnología e Informática</div>
+        <p class="cert-desc">Competencias digitales, manejo de sistemas, soporte técnico y herramientas de productividad.</p>
+        <p class="coming-label">Disponible próximamente. Contáctanos para ser notificado.</p>
+        <a href="https://wa.me/529841275583?text=Hola,%20me%20interesa%20la%20certificación%20en%20Tecnología" target="_blank" class="cert-cta" style="background:var(--muted);">💬 Notificarme</a>
+      </div>
+    </div>
+
+    <div class="cert-card coming">
+      <img src="https://images.unsplash.com/photo-1590012314607-cda9d9b699ae?w=500&q=80" alt="Próximamente" class="cert-img">
+      <div class="cert-body">
+        <span class="cert-tag">Próximamente</span>
+        <div class="cert-name">🍽 Gastronomía</div>
+        <p class="cert-desc">Preparación de alimentos, inocuidad, gestión de cocina y administración de restaurantes.</p>
+        <p class="coming-label">Disponible próximamente. Contáctanos para ser notificado.</p>
+        <a href="https://wa.me/529841275583?text=Hola,%20me%20interesa%20la%20certificación%20en%20Gastronomía" target="_blank" class="cert-cta" style="background:var(--muted);">💬 Notificarme</a>
+      </div>
+    </div>
+
+    <div class="cert-card coming">
+      <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=500&q=80" alt="Próximamente" class="cert-img">
+      <div class="cert-body">
+        <span class="cert-tag">Próximamente</span>
+        <div class="cert-name">📚 Educación y Docencia</div>
+        <p class="cert-desc">Competencias pedagógicas, planeación didáctica, evaluación y ambientes de aprendizaje.</p>
+        <p class="coming-label">Disponible próximamente. Contáctanos para ser notificado.</p>
+        <a href="https://wa.me/529841275583?text=Hola,%20me%20interesa%20la%20certificación%20en%20Educación" target="_blank" class="cert-cta" style="background:var(--muted);">💬 Notificarme</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<!-- INFO STRIP -->
+<div class="info-strip">
+  <div class="info-strip-inner">
+    <div class="strip-item">
+      <div class="strip-icon">📜</div>
+      <div class="strip-title">Validez Nacional</div>
+      <div class="strip-desc">Certificaciones reconocidas por CONOCER y la SEP en todo México</div>
+    </div>
+    <div class="strip-item">
+      <div class="strip-icon">⚡</div>
+      <div class="strip-title">Proceso Ágil</div>
+      <div class="strip-desc">Sin trámites complicados. Te guiamos paso a paso hasta obtener tu constancia</div>
+    </div>
+    <div class="strip-item">
+      <div class="strip-icon">🎯</div>
+      <div class="strip-title">Asesoría Personalizada</div>
+      <div class="strip-desc">Un asesor dedicado te acompaña durante todo el proceso de certificación</div>
+    </div>
+    <div class="strip-item">
+      <div class="strip-icon">💼</div>
+      <div class="strip-title">Mejores Oportunidades</div>
+      <div class="strip-desc">Potencia tu perfil profesional y accede a mejores empleos y salarios</div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-bg">
+  <h2>¿Cuál certificación<br>es la tuya?</h2>
+  <p>Platícanos tu situación y te recomendamos la opción ideal para ti.</p>
+  <div class="cta-btns">
+    <a href="https://wa.me/529841275583?text=Hola,%20quisiera%20saber%20qué%20certificación%20me%20conviene" target="_blank" class="btn-wa">💬 Asesoría gratuita por WhatsApp</a>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 Educación y Certificaciones en México · Certificaciones SEP y CONOCER con validez oficial</p>
+  <div style="display:flex;gap:16px;flex-wrap:wrap;">
+    <a href="index.html">Inicio</a>
+    <a href="administracion.html">Licenciatura</a>
+    <a href="preparatoria.html">Preparatoria</a>
+    <a href="secundaria.html">Secundaria</a>
+    <a href="Plan_de_Pagos.html">Planes de Pago</a>
+    <a href="https://wa.me/529841275583" target="_blank">WhatsApp</a>
+  </div>
+</footer>
+
+</body>
+</html>

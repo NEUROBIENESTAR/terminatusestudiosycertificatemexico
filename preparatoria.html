@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Preparatoria Abierta · Certificado Oficial SEP</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0d1b2a;--gold:#c9a84c;--gold2:#e8c96a;--cream:#faf8f3;--ink:#1a1a2e;--muted:#6b7280;--border:#e8e4dc;--green:#16a34a;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Outfit',sans-serif;background:var(--cream);color:var(--ink);overflow-x:hidden;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,27,42,0.97);backdrop-filter:blur(12px);padding:0 40px;height:64px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(201,168,76,0.2);}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--gold);font-weight:600;text-decoration:none;white-space:nowrap;}
+.nav-links{display:flex;gap:4px;align-items:center;}
+.nav-links a{color:#9ca3af;font-size:13px;text-decoration:none;padding:6px 10px;border-radius:6px;transition:color 0.2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--gold);}
+.nav-dropdown{position:relative;}
+.nav-dropdown>a{display:flex;align-items:center;gap:4px;}
+.nav-dropdown>a::after{content:'▾';font-size:10px;opacity:0.6;}
+.nav-dropdown-menu{display:none;position:absolute;top:calc(100% + 8px);left:0;background:var(--navy);border:1px solid rgba(201,168,76,0.2);border-radius:10px;padding:8px;min-width:220px;box-shadow:0 16px 40px rgba(0,0,0,0.4);z-index:200;}
+.nav-dropdown:hover .nav-dropdown-menu{display:block;}
+.nav-dropdown-menu a{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:7px;color:#9ca3af;font-size:13px;text-decoration:none;transition:all 0.15s;}
+.nav-dropdown-menu a:hover{background:rgba(201,168,76,0.1);color:var(--gold);}
+.nav-cta{background:var(--gold);color:var(--navy)!important;padding:8px 18px;border-radius:6px;font-weight:600!important;}
+.nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;}
+.nav-hamburger span{width:22px;height:2px;background:var(--gold);border-radius:2px;}
+.mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;background:var(--navy);z-index:99;padding:20px;border-bottom:1px solid rgba(201,168,76,0.2);}
+.mobile-menu.open{display:block;}
+.mobile-menu a{display:block;color:#9ca3af;text-decoration:none;padding:12px 16px;border-radius:8px;font-size:14px;transition:all 0.15s;}
+.mobile-menu a:hover{background:rgba(201,168,76,0.1);color:var(--gold);}
+.m-section{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(201,168,76,0.5);padding:16px 16px 6px;margin-top:8px;}
+.m-cta{background:var(--gold);color:var(--navy)!important;font-weight:600;margin-top:12px;text-align:center;}
+
+/* COMING SOON PAGE */
+.page-wrap{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:120px 20px 60px;text-align:center;}
+.eyebrow{font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:flex;align-items:center;justify-content:center;gap:10px;}
+.eyebrow span{width:30px;height:1px;background:var(--gold);display:inline-block;}
+h1{font-family:'Cormorant Garamond',serif;font-size:clamp(40px,6vw,72px);font-weight:700;color:var(--navy);line-height:1.1;margin-bottom:16px;}
+h1 em{color:var(--gold);font-style:normal;}
+.subtitle{font-size:18px;color:var(--muted);max-width:520px;line-height:1.7;margin-bottom:40px;font-weight:300;}
+.coming-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.3);color:var(--gold);padding:8px 20px;border-radius:30px;font-size:13px;font-weight:600;margin-bottom:40px;}
+.info-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;max-width:700px;width:100%;margin-bottom:48px;}
+.info-card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:24px 20px;}
+.info-icon{font-size:28px;margin-bottom:10px;}
+.info-title{font-size:14px;font-weight:600;color:var(--navy);margin-bottom:4px;}
+.info-desc{font-size:13px;color:var(--muted);}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+.btn-wa{display:inline-flex;align-items:center;gap:8px;background:var(--green);color:#fff;padding:14px 28px;border-radius:8px;text-decoration:none;font-weight:600;font-size:15px;transition:all 0.2s;}
+.btn-wa:hover{background:#15803d;transform:translateY(-2px);}
+.btn-back{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--navy);border:1.5px solid var(--border);padding:14px 28px;border-radius:8px;text-decoration:none;font-weight:500;font-size:15px;transition:all 0.2s;}
+.btn-back:hover{border-color:var(--gold);color:var(--gold);}
+footer{background:#080f18;padding:24px 40px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+footer p,footer a{font-size:12px;color:#4b5563;text-decoration:none;}
+footer a:hover{color:var(--gold);}
+@media(max-width:800px){nav{padding:0 20px;}.nav-links{display:none!important;}.nav-hamburger{display:flex!important;}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">Educación &amp; Cert. MX</a>
+  <div class="nav-links">
+    <a href="index.html">Inicio</a>
+    <div class="nav-dropdown">
+      <a href="#" class="active">Programas</a>
+      <div class="nav-dropdown-menu">
+        <a href="administracion.html"><span>🎓</span> Licenciatura en Administración</a>
+        <a href="preparatoria.html" style="color:var(--gold)"><span>📗</span> Preparatoria</a>
+        <a href="secundaria.html"><span>📘</span> Secundaria</a>
+        <a href="certificaciones.html"><span>📜</span> Certificaciones</a>
+      </div>
+    </div>
+    <a href="Plan_de_Pagos.html" class="nav-cta">📋 Planes de Pago</a>
+    <a href="https://wa.me/529841275583" target="_blank" style="color:#16a34a;font-weight:600;">💬 WhatsApp</a>
+  </div>
+  <div class="nav-hamburger" onclick="document.getElementById('mobileMenu').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">🏠 Inicio</a>
+  <div class="m-section">Programas</div>
+  <a href="administracion.html">🎓 Licenciatura en Administración</a>
+  <a href="preparatoria.html">📗 Preparatoria</a>
+  <a href="secundaria.html">📘 Secundaria</a>
+  <a href="certificaciones.html">📜 Certificaciones</a>
+  <a href="Plan_de_Pagos.html">📋 Planes de Pago</a>
+  <a href="https://wa.me/529841275583" target="_blank" class="m-cta">💬 WhatsApp</a>
+</div>
+
+<div class="page-wrap">
+  <div class="eyebrow"><span></span>Próximamente<span></span></div>
+  <div class="coming-badge">🚧 Página en construcción</div>
+  <h1>Preparatoria<br><em>Abierta y Oficial</em></h1>
+  <p class="subtitle">Estamos preparando toda la información sobre nuestros programas de preparatoria. Mientras tanto, puedes contactarnos directamente por WhatsApp para recibir asesoría personalizada.</p>
+
+  <div class="info-cards">
+    <div class="info-card">
+      <div class="info-icon">⏱</div>
+      <div class="info-title">Desde 6 meses</div>
+      <div class="info-desc">Modalidad intensiva para terminar rápido</div>
+    </div>
+    <div class="info-card">
+      <div class="info-icon">🎓</div>
+      <div class="info-title">Certificado SEP</div>
+      <div class="info-desc">Validez oficial en toda la República</div>
+    </div>
+    <div class="info-card">
+      <div class="info-icon">💻</div>
+      <div class="info-title">100% en línea</div>
+      <div class="info-desc">Estudia desde casa a tu ritmo</div>
+    </div>
+  </div>
+
+  <div class="cta-btns">
+    <a href="https://wa.me/529841275583?text=Hola,%20me%20interesa%20la%20preparatoria" target="_blank" class="btn-wa">💬 Solicitar información</a>
+    <a href="index.html" class="btn-back">← Volver al inicio</a>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 Educación y Certificaciones en México</p>
+  <div style="display:flex;gap:16px;flex-wrap:wrap;">
+    <a href="index.html">Inicio</a>
+    <a href="administracion.html">Licenciatura</a>
+    <a href="Plan_de_Pagos.html">Planes de Pago</a>
+    <a href="https://wa.me/529841275583" target="_blank">WhatsApp</a>
+  </div>
+</footer>
+</body>
+</html>

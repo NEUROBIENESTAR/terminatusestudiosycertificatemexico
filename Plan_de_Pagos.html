@@ -54,9 +54,68 @@ select{width:100%;padding:8px 10px;border:1px solid #d0cdc8;border-radius:8px;fo
 .note{font-size:12px;color:#888;margin-top:8px;font-style:italic}
 .footer{margin-top:1.5rem;font-size:12px;color:#aaa;text-align:center;padding-top:1rem;border-top:1px solid #e0deda}
 @media(max-width:600px){.row2,.row3{grid-template-columns:1fr}}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,27,42,0.97);backdrop-filter:blur(12px);padding:0 40px;height:64px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(201,168,76,0.2);}
+.nav-logo{font-family:Georgia,serif;font-size:18px;color:#c9a84c;font-weight:600;text-decoration:none;white-space:nowrap;}
+.nav-links{display:flex;gap:4px;align-items:center;}
+.nav-links a{color:#9ca3af;font-size:13px;text-decoration:none;font-weight:400;transition:color 0.2s;padding:6px 10px;border-radius:6px;}
+.nav-links a:hover{color:#c9a84c;}
+.nav-dropdown{position:relative;}
+.nav-dropdown>a{display:flex;align-items:center;gap:4px;}
+.nav-dropdown>a::after{content:'▾';font-size:10px;opacity:0.6;}
+.nav-dropdown-menu{display:none;position:absolute;top:calc(100% + 8px);left:0;background:#0d1b2a;border:1px solid rgba(201,168,76,0.2);border-radius:10px;padding:8px;min-width:220px;box-shadow:0 16px 40px rgba(0,0,0,0.4);z-index:200;}
+.nav-dropdown:hover .nav-dropdown-menu{display:block;}
+.nav-dropdown-menu a{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:7px;color:#9ca3af;font-size:13px;text-decoration:none;transition:all 0.15s;}
+.nav-dropdown-menu a:hover{background:rgba(201,168,76,0.1);color:#c9a84c;}
+.nav-cta{background:#c9a84c;color:#0d1b2a!important;padding:8px 18px;border-radius:6px;font-weight:600!important;}
+.nav-cta:hover{background:#e8c96a!important;}
+.nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;}
+.nav-hamburger span{width:22px;height:2px;background:#c9a84c;border-radius:2px;}
+.mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;background:#0d1b2a;z-index:99;padding:20px;border-bottom:1px solid rgba(201,168,76,0.2);}
+.mobile-menu.open{display:block;}
+.mobile-menu a{display:block;color:#9ca3af;text-decoration:none;padding:12px 16px;border-radius:8px;font-size:14px;}
+.mobile-menu a:hover{background:rgba(201,168,76,0.1);color:#c9a84c;}
+.mobile-menu .m-section{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(201,168,76,0.5);padding:16px 16px 6px;margin-top:8px;}
+.mobile-menu .m-cta{background:#c9a84c;color:#0d1b2a!important;font-weight:600;margin-top:12px;text-align:center;}
+body{padding-top:80px;}
+@media(max-width:800px){nav{padding:0 20px;}.nav-links{display:none!important;}.nav-hamburger{display:flex!important;}}
 </style>
 </head>
 <body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">Educación &amp; Cert. MX</a>
+  <div class="nav-links">
+    <a href="index.html">Inicio</a>
+    <div class="nav-dropdown">
+      <a href="#">Programas</a>
+      <div class="nav-dropdown-menu">
+        <a href="administracion.html"><span>🎓</span> Licenciatura en Administración</a>
+        <a href="preparatoria.html"><span>📗</span> Preparatoria</a>
+        <a href="secundaria.html"><span>📘</span> Secundaria</a>
+        <a href="certificaciones.html"><span>📜</span> Certificaciones</a>
+      </div>
+    </div>
+    <a href="Plan_de_Pagos.html" style="color:#c9a84c;font-weight:600;">📋 Planes de Pago</a>
+    <a href="https://wa.me/529841275583" target="_blank" style="color:#16a34a;font-weight:600;">💬 WhatsApp</a>
+  </div>
+  <div class="nav-hamburger" onclick="document.getElementById('mobileMenu').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">🏠 Inicio</a>
+  <div class="m-section">Programas</div>
+  <a href="administracion.html">🎓 Licenciatura en Administración</a>
+  <a href="preparatoria.html">📗 Preparatoria</a>
+  <a href="secundaria.html">📘 Secundaria</a>
+  <a href="certificaciones.html">📜 Certificaciones</a>
+  <a href="Plan_de_Pagos.html">📋 Planes de Pago</a>
+  <a href="https://wa.me/529841275583" target="_blank" class="m-cta">💬 WhatsApp</a>
+</div>
+
 <div class="container">
   <h1>Plan de Pagos</h1>
   <p style="margin-bottom:1.5rem">Licenciatura en Administración · Acuerdo 286 SEP · Título oficial reconocido</p>
@@ -198,7 +257,14 @@ select{width:100%;padding:8px 10px;border:1px solid #d0cdc8;border-radius:8px;fo
     💬 <strong style="color:#1a1a1a">¿Te interesa una especialidad?</strong> Consúltanos para conocer el costo adicional y las opciones de pago disponibles según tu plan.
   </div>
 
-  <div class="footer">Acuerdo 286 SEP · Título con validez oficial · Inscripción $1,500 no incluida en mensualidades</div>
+  <div class="footer">
+  Acuerdo 286 SEP · Título con validez oficial · Inscripción $1,500 no incluida en mensualidades<br><br>
+  <a href="index.html" style="color:#aaa;margin:0 8px;">Inicio</a>
+  <a href="administracion.html" style="color:#aaa;margin:0 8px;">Licenciatura</a>
+  <a href="preparatoria.html" style="color:#aaa;margin:0 8px;">Preparatoria</a>
+  <a href="secundaria.html" style="color:#aaa;margin:0 8px;">Secundaria</a>
+  <a href="certificaciones.html" style="color:#aaa;margin:0 8px;">Certificaciones</a>
+</div>
 </div>
 
 <script>

@@ -1,345 +1,457 @@
 <!DOCTYPE html>
-
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Certificaciones y Estudios Oficiales en México | Secundaria, Preparatoria y Licenciatura</title>
-
 <meta name="description" content="Termina tu secundaria, preparatoria o licenciatura en México. Certificaciones oficiales SEP y CONOCER. Asesoría personalizada y planes accesibles.">
-
-<meta name="keywords" content="terminar secundaria México, preparatoria abierta, certificaciones SEP, acuerdo 286, CONOCER certificaciones, licenciatura México">
-
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-body { margin:0; font-family:Arial; background:#f4f6f9; color:#333; }
-
-/* HERO */
-.hero {
-    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-    url('https://images.unsplash.com/photo-1523580846011-d3a5bc25702b') center/cover;
-    color:white;
-    text-align:center;
-    padding:100px 20px;
+:root {
+  --navy: #0d1b2a;
+  --navy2: #1b2d42;
+  --gold: #c9a84c;
+  --gold2: #e8c96a;
+  --cream: #faf8f3;
+  --ink: #1a1a2e;
+  --muted: #6b7280;
+  --border: #e8e4dc;
+  --white: #ffffff;
+  --green: #16a34a;
 }
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Outfit',sans-serif;background:var(--cream);color:var(--ink);overflow-x:hidden;}
 
-.hero h1 { font-size:38px; }
-.hero p { font-size:18px; }
-
-.btn {
-    display:inline-block;
-    margin-top:20px;
-    background:#16a34a;
-    color:white;
-    padding:12px 25px;
-    border-radius:6px;
-    text-decoration:none;
-    font-weight:bold;
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(13,27,42,0.97);
+  backdrop-filter:blur(12px);
+  padding:0 40px;
+  height:64px;
+  display:flex;align-items:center;justify-content:space-between;
+  border-bottom:1px solid rgba(201,168,76,0.2);
 }
-
-/* SECTIONS */
-section { max-width:1100px; margin:auto; padding:50px 20px; }
-
-.cards {
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:20px;
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--gold);font-weight:600;text-decoration:none;white-space:nowrap;}
+.nav-links{display:flex;gap:4px;align-items:center;}
+.nav-links a{color:#9ca3af;font-size:13px;text-decoration:none;font-weight:400;transition:color 0.2s;padding:6px 10px;border-radius:6px;}
+.nav-links a:hover{color:var(--gold);}
+.nav-links a.active{color:var(--gold);}
+.nav-dropdown{position:relative;}
+.nav-dropdown > a{display:flex;align-items:center;gap:4px;}
+.nav-dropdown > a::after{content:'▾';font-size:10px;opacity:0.6;}
+.nav-dropdown-menu{
+  display:none;position:absolute;top:calc(100% + 8px);left:0;
+  background:var(--navy);border:1px solid rgba(201,168,76,0.2);
+  border-radius:10px;padding:8px;min-width:200px;
+  box-shadow:0 16px 40px rgba(0,0,0,0.4);
 }
-
-.card {
-    background:white;
-    padding:20px;
-    border-radius:10px;
-    box-shadow:0 3px 10px rgba(0,0,0,0.1);
+.nav-dropdown:hover .nav-dropdown-menu{display:block;}
+.nav-dropdown-menu a{
+  display:flex;align-items:center;gap:10px;
+  padding:9px 12px;border-radius:7px;
+  color:#9ca3af;font-size:13px;text-decoration:none;
+  transition:all 0.15s;
 }
+.nav-dropdown-menu a:hover{background:rgba(201,168,76,0.1);color:var(--gold);}
+.nav-dropdown-menu .dd-icon{font-size:16px;width:22px;text-align:center;}
+.nav-cta{background:var(--gold);color:var(--navy)!important;padding:8px 18px;border-radius:6px;font-weight:600!important;margin-left:6px;}
+.nav-cta:hover{background:var(--gold2)!important;}
+.nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;}
+.nav-hamburger span{width:22px;height:2px;background:var(--gold);border-radius:2px;transition:all 0.3s;}
+.mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;background:var(--navy);z-index:99;padding:20px;border-bottom:1px solid rgba(201,168,76,0.2);}
+.mobile-menu.open{display:block;}
+.mobile-menu a{display:block;color:#9ca3af;text-decoration:none;padding:12px 16px;border-radius:8px;font-size:14px;transition:all 0.15s;}
+.mobile-menu a:hover{background:rgba(201,168,76,0.1);color:var(--gold);}
+.mobile-menu .m-section{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(201,168,76,0.5);padding:16px 16px 6px;margin-top:8px;}
+.mobile-menu .m-cta{background:var(--gold);color:var(--navy)!important;font-weight:600;margin-top:12px;text-align:center;}
 
-/* TESTIMONIOS */
-.testimonial {
-    background:#fff;
-    padding:20px;
-    border-left:5px solid #16a34a;
-    border-radius:8px;
-    margin-bottom:15px;
+/* ── HERO ── */
+.hero{
+  min-height:100vh;
+  background:linear-gradient(rgba(0,0,0,0.65),rgba(0,0,0,0.65)),
+    url('https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?w=1600&q=80') center/cover;
+  color:white;
+  display:flex;align-items:center;justify-content:center;
+  text-align:center;
+  padding:120px 20px 80px;
 }
-
-/* CHATBOT */
-#chatbot {
-    position:fixed;
-    bottom:20px;
-    right:20px;
-    width:300px;
-    background:white;
-    border-radius:10px;
-    box-shadow:0 5px 20px rgba(0,0,0,0.2);
-    overflow:hidden;
-    font-size:14px;
+.hero-inner{max-width:760px;}
+.hero-eyebrow{font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:flex;align-items:center;justify-content:center;gap:10px;}
+.hero-eyebrow span{width:30px;height:1px;background:var(--gold);display:inline-block;}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(38px,6vw,68px);font-weight:700;line-height:1.1;margin-bottom:20px;}
+.hero h1 em{color:var(--gold);font-style:normal;}
+.hero-sub{font-size:18px;color:rgba(255,255,255,0.8);margin-bottom:36px;line-height:1.6;font-weight:300;}
+.hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+.btn-primary{
+  background:var(--gold);color:var(--navy);
+  padding:14px 30px;border-radius:8px;
+  text-decoration:none;font-weight:600;font-size:15px;
+  transition:all 0.2s;display:inline-flex;align-items:center;gap:8px;
 }
-
-#chat-header {
-    background:#0f172a;
-    color:white;
-    padding:10px;
-    font-weight:bold;
+.btn-primary:hover{background:var(--gold2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,168,76,0.35);}
+.btn-secondary{
+  background:transparent;color:white;
+  border:1.5px solid rgba(255,255,255,0.3);
+  padding:14px 30px;border-radius:8px;
+  text-decoration:none;font-weight:500;font-size:15px;
+  transition:all 0.2s;
 }
+.btn-secondary:hover{border-color:var(--gold);color:var(--gold);}
 
-#chat-body {
-    height:200px;
-    overflow-y:auto;
-    padding:10px;
+/* ── SECTION GENERAL ── */
+.section{max-width:1100px;margin:0 auto;padding:80px 30px;}
+.section-tag{font-size:11px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(30px,4vw,46px);font-weight:700;color:var(--navy);margin-bottom:14px;line-height:1.15;}
+.section-desc{font-size:15px;color:var(--muted);line-height:1.7;max-width:560px;}
+
+/* ── PROGRAMAS ── */
+.programas-bg{background:var(--white);}
+.prog-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;margin-top:48px;}
+.prog-card{
+  background:var(--cream);
+  border:1px solid var(--border);
+  border-radius:16px;overflow:hidden;
+  transition:all 0.25s;
+  text-decoration:none;
+  display:block;
 }
+.prog-card:hover{transform:translateY(-5px);box-shadow:0 20px 50px rgba(0,0,0,0.1);border-color:var(--gold);}
+.prog-img{width:100%;height:160px;object-fit:cover;display:block;}
+.prog-body{padding:22px;}
+.prog-icon{font-size:28px;margin-bottom:10px;}
+.prog-name{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--navy);margin-bottom:6px;}
+.prog-desc{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:14px;}
+.prog-link{font-size:13px;font-weight:600;color:var(--gold);}
 
-#chat-input {
-    display:flex;
+/* ── ESTADÍSTICAS ── */
+.stats-bg{background:var(--navy);}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:2px;margin-top:0;}
+.stat-item{text-align:center;padding:50px 20px;}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:700;color:var(--gold);line-height:1;}
+.stat-label{font-size:13px;color:#94a3b8;margin-top:6px;line-height:1.4;}
+
+/* ── PLANES ── */
+.planes-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;margin-top:48px;}
+.plan-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:14px;padding:24px;text-align:center;
+  transition:all 0.25s;text-decoration:none;display:block;
 }
+.plan-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,0.1);border-color:var(--gold);}
+.plan-icon{font-size:32px;margin-bottom:12px;}
+.plan-name{font-size:15px;font-weight:600;color:var(--navy);margin-bottom:6px;}
+.plan-price{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:700;color:var(--gold);margin:8px 0 4px;}
+.plan-desde{font-size:12px;color:var(--muted);}
+.plan-badge{display:inline-block;margin-top:12px;font-size:12px;padding:5px 12px;border-radius:20px;background:#f0fdf4;color:#166534;border:1px solid #bbf7d0;}
 
-#chat-input input {
-    flex:1;
-    border:none;
-    padding:10px;
+/* ── TESTIMONIOS ── */
+.test-bg{background:var(--white);}
+.test-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin-top:48px;}
+.test-card{background:var(--cream);border:1px solid var(--border);border-radius:14px;padding:24px;border-left:4px solid var(--gold);}
+.test-stars{color:var(--gold);font-size:14px;margin-bottom:12px;}
+.test-text{font-size:14px;color:var(--ink);line-height:1.7;margin-bottom:16px;font-style:italic;}
+.test-name{font-size:13px;font-weight:600;color:var(--navy);}
+.test-detail{font-size:11px;color:var(--muted);}
+
+/* ── CTA ── */
+.cta-bg{
+  background:linear-gradient(135deg,var(--navy) 0%,#0d2137 100%);
+  text-align:center;padding:100px 40px;position:relative;overflow:hidden;
 }
+.cta-bg::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(201,168,76,0.1) 0%,transparent 60%);}
+.cta-bg h2{font-family:'Cormorant Garamond',serif;font-size:clamp(34px,5vw,54px);color:white;font-weight:700;margin-bottom:14px;position:relative;}
+.cta-bg p{color:#94a3b8;font-size:16px;margin-bottom:36px;position:relative;}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative;}
+.btn-wa{display:inline-flex;align-items:center;gap:8px;background:#16a34a;color:white;padding:14px 30px;border-radius:8px;text-decoration:none;font-weight:600;font-size:15px;transition:all 0.2s;}
+.btn-wa:hover{background:#15803d;transform:translateY(-2px);box-shadow:0 8px 24px rgba(22,163,74,0.4);}
 
-#chat-input button {
-    background:#16a34a;
-    color:white;
-    border:none;
-    padding:10px;
-}
+/* ── FOOTER ── */
+footer{background:#080f18;padding:30px 40px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;}
+.footer-links{display:flex;gap:20px;flex-wrap:wrap;}
+footer p,footer a{font-size:12px;color:#4b5563;text-decoration:none;}
+footer a:hover{color:var(--gold);}
 
-/* FOOTER */
-footer {
-    background:#111827;
-    color:white;
-    text-align:center;
-    padding:20px;
+/* ── CHATBOT ── */
+#chat-bubble{position:fixed;bottom:28px;right:28px;z-index:200;width:52px;height:52px;border-radius:50%;background:var(--navy);border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:22px;box-shadow:0 8px 24px rgba(0,0,0,0.3);transition:transform 0.2s;}
+#chat-bubble:hover{transform:scale(1.08);}
+.chat-notif{position:absolute;top:-4px;right:-4px;width:16px;height:16px;border-radius:50%;background:#ef4444;color:white;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;}
+#chatbox{display:none;position:fixed;bottom:94px;right:28px;z-index:200;width:310px;background:white;border-radius:16px;box-shadow:0 24px 60px rgba(0,0,0,0.2);overflow:hidden;font-size:13px;border:1px solid var(--border);}
+.chat-head{background:var(--navy);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;}
+.chat-head-info{display:flex;align-items:center;gap:10px;}
+.chat-avatar{width:32px;height:32px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;font-size:16px;}
+.chat-head-name{color:white;font-weight:600;font-size:13px;}
+.chat-head-status{color:#86efac;font-size:11px;}
+.chat-close{color:#6b7280;cursor:pointer;font-size:18px;background:none;border:none;line-height:1;}
+.chat-messages{height:220px;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px;background:#f9fafb;}
+.msg{max-width:85%;padding:9px 12px;border-radius:10px;line-height:1.5;font-size:13px;}
+.msg.bot{background:white;border:1px solid var(--border);align-self:flex-start;border-radius:4px 10px 10px 10px;}
+.msg.user{background:var(--navy);color:white;align-self:flex-end;border-radius:10px 10px 4px 10px;}
+.chat-opts{padding:10px 14px;display:flex;flex-direction:column;gap:6px;background:white;border-top:1px solid var(--border);}
+.chat-opt{padding:8px 12px;border-radius:8px;border:1px solid var(--border);background:var(--cream);text-align:left;cursor:pointer;font-size:12px;color:var(--ink);font-family:'Outfit',sans-serif;transition:all 0.15s;}
+.chat-opt:hover{border-color:var(--gold);background:#fef9ee;color:var(--navy);}
+
+@media(max-width:800px){
+  nav{padding:0 20px;}
+  .nav-links{display:none;}
+  .nav-hamburger{display:flex;}
+  .hero h1{font-size:36px;}
+  .section{padding:60px 20px;}
+  .stats-grid{grid-template-columns:1fr 1fr;}
+  footer{flex-direction:column;text-align:center;padding:24px 20px;}
 }
 </style>
-
 </head>
-
 <body>
 
-<!-- HERO -->
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">Educación &amp; Cert. MX</a>
+  <div class="nav-links">
+    <a href="index.html" class="active">Inicio</a>
+    <div class="nav-dropdown">
+      <a href="#">Programas</a>
+      <div class="nav-dropdown-menu">
+        <a href="administracion.html"><span class="dd-icon">🎓</span>Licenciatura en Administración</a>
+        <a href="preparatoria.html"><span class="dd-icon">📗</span>Preparatoria</a>
+        <a href="secundaria.html"><span class="dd-icon">📘</span>Secundaria</a>
+        <a href="certificaciones.html"><span class="dd-icon">📜</span>Certificaciones</a>
+      </div>
+    </div>
+    <a href="Plan_de_Pagos.html" class="nav-cta">📋 Planes de Pago</a>
+    <a href="https://wa.me/529841275583" target="_blank" style="color:#16a34a;font-weight:600;">💬 WhatsApp</a>
+  </div>
+  <div class="nav-hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
 
-<div class="hero">
-    <h1>Termina tus estudios y obtén certificaciones oficiales en México</h1>
-    <p>Secundaria, preparatoria, licenciatura y certificaciones SEP / CONOCER</p>
-    <a class="btn" href="https://wa.me/529841275583">Solicitar información</a>
+<!-- MENÚ MÓVIL -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">🏠 Inicio</a>
+  <div class="m-section">Programas</div>
+  <a href="administracion.html">🎓 Licenciatura en Administración</a>
+  <a href="preparatoria.html">📗 Preparatoria</a>
+  <a href="secundaria.html">📘 Secundaria</a>
+  <a href="certificaciones.html">📜 Certificaciones</a>
+  <div class="m-section">Información</div>
+  <a href="Plan_de_Pagos.html">📋 Planes de Pago</a>
+  <a href="https://wa.me/529841275583" target="_blank" class="m-cta">💬 Hablar por WhatsApp</a>
 </div>
 
-<!-- SERVICIOS -->
-
-<section>
-    <h2>Programas disponibles</h2>
-    <div class="cards">
-        <div class="card"><h3>Secundaria</h3><p>Finaliza tu educación básica rápidamente.</p></div>
-        <div class="card"><h3>Preparatoria</h3><p>Opciones flexibles para concluir tu bachillerato.</p></div>
-        <div class="card">
-            <h3>Licenciatura</h3>
-            <p>Obtén tu título con asesoría completa.</p>
-            <label for="lic-select" style="font-weight:bold; font-size:13px; color:#555;">Selecciona tu carrera:</label>
-            <select id="lic-select" onchange="mostrarInfoLicenciatura(this.value)" style="width:100%; margin-top:8px; padding:8px; border:1px solid #d1d5db; border-radius:6px; font-size:14px; cursor:pointer;">
-                <option value="">-- Elige una opción --</option>
-                <option value="administracion">Administración</option>
-                <option value="derecho">Derecho</option>
-                <option value="pedagogia">Pedagogía</option>
-            </select>
-            <div id="info-lic" style="margin-top:10px; font-size:13px; color:#374151; display:none; background:#f0fdf4; border-left:3px solid #16a34a; padding:8px; border-radius:4px;"></div>
-            <a id="btn-lic" href="#" style="display:none; margin-top:10px; background:#16a34a; color:white; padding:8px 14px; border-radius:5px; text-decoration:none; font-size:13px; font-weight:bold;">Ver más información</a>
-        </div>
-        <div class="card"><h3>Certificaciones</h3><p>Certificaciones oficiales con validez nacional.</p></div>
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow"><span></span>SEP · CONOCER · Acuerdo 286<span></span></div>
+    <h1>Termina tus estudios y obtén <em>certificaciones oficiales</em> en México</h1>
+    <p class="hero-sub">Secundaria, preparatoria, licenciatura y certificaciones con validez nacional. Estudia a tu ritmo desde casa.</p>
+    <div class="hero-btns">
+      <a class="btn-primary" href="https://wa.me/529841275583" target="_blank">💬 Solicitar información</a>
+      <a class="btn-secondary" href="#programas">Ver programas →</a>
     </div>
-</section>
+  </div>
+</div>
+
+<!-- PROGRAMAS -->
+<div class="programas-bg">
+<div class="section" id="programas">
+  <div class="section-tag">Nuestros Programas</div>
+  <div class="section-title">Elige tu camino educativo</div>
+  <p class="section-desc">Desde terminar la secundaria hasta obtener una licenciatura, te acompañamos en cada paso con asesoría personalizada.</p>
+
+  <div class="prog-grid">
+    <a href="secundaria.html" class="prog-card">
+      <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=500&q=80" alt="Secundaria" class="prog-img">
+      <div class="prog-body">
+        <div class="prog-icon">📘</div>
+        <div class="prog-name">Secundaria</div>
+        <p class="prog-desc">Finaliza tu educación básica rápidamente con certificado oficial reconocido en toda la República.</p>
+        <div class="prog-link">Ver programa →</div>
+      </div>
+    </a>
+    <a href="preparatoria.html" class="prog-card">
+      <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=500&q=80" alt="Preparatoria" class="prog-img">
+      <div class="prog-body">
+        <div class="prog-icon">📗</div>
+        <div class="prog-name">Preparatoria</div>
+        <p class="prog-desc">Opciones flexibles para concluir tu bachillerato. Modalidad abierta, a distancia o intensiva.</p>
+        <div class="prog-link">Ver programa →</div>
+      </div>
+    </a>
+    <a href="administracion.html" class="prog-card">
+      <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=500&q=80" alt="Licenciatura" class="prog-img">
+      <div class="prog-body">
+        <div class="prog-icon">🎓</div>
+        <div class="prog-name">Licenciatura</div>
+        <p class="prog-desc">Obtén tu título universitario con validez oficial. Administración, Derecho, Pedagogía y más.</p>
+        <div class="prog-link">Ver programa →</div>
+      </div>
+    </a>
+    <a href="certificaciones.html" class="prog-card">
+      <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=500&q=80" alt="Certificaciones" class="prog-img">
+      <div class="prog-body">
+        <div class="prog-icon">📜</div>
+        <div class="prog-name">Certificaciones</div>
+        <p class="prog-desc">Certificaciones SEP y CONOCER con validez nacional. RRHH, Mercadotecnia, Bienestar y más.</p>
+        <div class="prog-link">Ver certificaciones →</div>
+      </div>
+    </a>
+  </div>
+</div>
+</div>
+
+<!-- ESTADÍSTICAS -->
+<div class="stats-bg">
+  <div class="stats-grid">
+    <div class="stat-item"><div class="stat-num">+500</div><div class="stat-label">Estudiantes certificados</div></div>
+    <div class="stat-item"><div class="stat-num">8</div><div class="stat-label">meses modalidad exprés</div></div>
+    <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label">Validez oficial SEP</div></div>
+    <div class="stat-item"><div class="stat-num">4h</div><div class="stat-label">por semana requeridas</div></div>
+  </div>
+</div>
+
+<!-- PLANES RÁPIDOS -->
+<div class="section" id="planes">
+  <div class="section-tag">Inversión en tu futuro</div>
+  <div class="section-title">Planes accesibles para todos</div>
+  <p class="section-desc">Modalidades flexibles que se adaptan a tu presupuesto y ritmo de vida.</p>
+  <div class="planes-grid">
+    <a href="secundaria.html" class="plan-card">
+      <div class="plan-icon">📘</div>
+      <div class="plan-name">Secundaria</div>
+      <div class="plan-price">$1,200</div>
+      <div class="plan-desde">desde / mes</div>
+      <div class="plan-badge">✅ Certificado SEP</div>
+    </a>
+    <a href="preparatoria.html" class="plan-card">
+      <div class="plan-icon">📗</div>
+      <div class="plan-name">Preparatoria</div>
+      <div class="plan-price">$1,400</div>
+      <div class="plan-desde">desde / mes</div>
+      <div class="plan-badge">✅ Certificado SEP</div>
+    </a>
+    <a href="Plan_de_Pagos.html" class="plan-card">
+      <div class="plan-icon">🎓</div>
+      <div class="plan-name">Licenciatura</div>
+      <div class="plan-price">$1,111</div>
+      <div class="plan-desde">desde / mes</div>
+      <div class="plan-badge">✅ Título Acuerdo 286</div>
+    </a>
+    <a href="certificaciones.html" class="plan-card">
+      <div class="plan-icon">📜</div>
+      <div class="plan-name">Certificaciones</div>
+      <div class="plan-price">Consultar</div>
+      <div class="plan-desde">precio disponible</div>
+      <div class="plan-badge">✅ CONOCER · SEP</div>
+    </a>
+  </div>
+</div>
 
 <!-- TESTIMONIOS -->
-
-<section>
-    <h2>Testimonios</h2>
-
-```
-<div class="testimonial">
-    “Gracias a este programa terminé mi preparatoria en pocos meses.” – María G.
+<div class="test-bg">
+<div class="section">
+  <div class="section-tag">Testimonios</div>
+  <div class="section-title">Lo que dicen nuestros estudiantes</div>
+  <div class="test-grid">
+    <div class="test-card">
+      <div class="test-stars">★★★★★</div>
+      <p class="test-text">"Gracias a este programa terminé mi preparatoria en pocos meses. El proceso fue claro y siempre me apoyaron."</p>
+      <div class="test-name">María G.</div>
+      <div class="test-detail">Preparatoria · Modalidad exprés</div>
+    </div>
+    <div class="test-card">
+      <div class="test-stars">★★★★★</div>
+      <p class="test-text">"Pensé que nunca iba a poder obtener mi licenciatura. Ahora tengo mi título y mejores oportunidades laborales."</p>
+      <div class="test-name">Carlos R.</div>
+      <div class="test-detail">Licenciatura en Administración</div>
+    </div>
+    <div class="test-card">
+      <div class="test-stars">★★★★★</div>
+      <p class="test-text">"La asesoría personalizada hace toda la diferencia. Me guiaron en cada paso hasta conseguir mi certificado."</p>
+      <div class="test-name">Ana L.</div>
+      <div class="test-detail">Certificación CONOCER</div>
+    </div>
+  </div>
 </div>
-
-<div class="testimonial">
-    “El proceso fue claro y siempre me apoyaron.” – Carlos R.
 </div>
-
-<div class="testimonial">
-    “Ahora tengo mi certificado y mejores oportunidades laborales.” – Ana L.
-</div>
-```
-
-</section>
 
 <!-- CTA -->
+<div class="cta-bg">
+  <h2>Inicia hoy mismo.<br>Tu futuro te espera.</h2>
+  <p>Asesoría personalizada · Inscripción abierta · Respuesta inmediata</p>
+  <div class="cta-btns">
+    <a class="btn-wa" href="https://wa.me/529841275583" target="_blank">💬 Hablar por WhatsApp</a>
+  </div>
+</div>
 
-<section style="text-align:center;">
-    <h2>Inicia hoy mismo</h2>
-    <a class="btn" href="https://wa.me/521XXXXXXXXXX">Hablar por WhatsApp</a>
-</section>
-
+<!-- FOOTER -->
 <footer>
-    <p>© 2026 Educación y Certificaciones en México</p>
-    <p>Sitio informativo. Procesos sujetos a instituciones oficiales.</p>
+  <p>© 2026 Educación y Certificaciones en México · Sitio informativo. Procesos sujetos a instituciones oficiales.</p>
+  <div class="footer-links">
+    <a href="index.html">Inicio</a>
+    <a href="administracion.html">Licenciatura</a>
+    <a href="preparatoria.html">Preparatoria</a>
+    <a href="secundaria.html">Secundaria</a>
+    <a href="certificaciones.html">Certificaciones</a>
+    <a href="Plan_de_Pagos.html">Planes de Pago</a>
+    <a href="https://wa.me/529841275583" target="_blank">WhatsApp</a>
+  </div>
 </footer>
 
 <!-- CHATBOT -->
-
-<!-- BOTÓN CHAT -->
-
-<div id="chat-toggle" onclick="toggleChat()">💬</div>
-
-<!-- CHATBOT -->
-
-<div id="chatbot">
-    <div id="chat-header">
-        Asistente
-        <span onclick="toggleChat()" style="float:right; cursor:pointer;">✖</span>
+<div id="chat-bubble" onclick="toggleChat()">💬<div class="chat-notif" id="chat-notif">1</div></div>
+<div id="chatbox">
+  <div class="chat-head">
+    <div class="chat-head-info">
+      <div class="chat-avatar">🎓</div>
+      <div>
+        <div class="chat-head-name">Asesora Virtual</div>
+        <div class="chat-head-status">● En línea ahora</div>
+      </div>
     </div>
-
-```
-<div id="chat-body">
-    <p><b>Asistente:</b> Hola 👋 ¿En qué podemos ayudarte?</p>
-
-    <button onclick="respuesta('prepa')">¿En cuánto tiempo termino la preparatoria?</button><br><br>
-    <button onclick="respuesta('licenciaturas')">¿Qué licenciaturas hay?</button><br><br>
-    <button onclick="respuesta('licenciatura_tiempo')">¿Cuánto dura la licenciatura?</button><br><br>
-    <button onclick="irWhats()">Quiero más información</button>
+    <button class="chat-close" onclick="toggleChat()">✕</button>
+  </div>
+  <div class="chat-messages" id="chat-msgs">
+    <div class="msg bot">¡Hola! 👋 ¿En qué puedo ayudarte hoy?</div>
+  </div>
+  <div class="chat-opts" id="chat-opts">
+    <button class="chat-opt" onclick="chatReply('prepa')">📗 ¿Cómo termino la preparatoria?</button>
+    <button class="chat-opt" onclick="chatReply('licenciatura')">🎓 ¿Qué licenciaturas ofrecen?</button>
+    <button class="chat-opt" onclick="chatReply('tiempo')">⏱ ¿Cuánto tiempo tarda?</button>
+    <button class="chat-opt" onclick="chatReply('costo')">💰 ¿Cuánto cuesta?</button>
+  </div>
 </div>
-```
-
-</div>
-
-<style>
-#chat-toggle {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: #16a34a;
-    color: white;
-    padding: 15px;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 20px;
-}
-
-#chatbot {
-    display: none;
-    position: fixed;
-    bottom: 80px;
-    right: 20px;
-    width: 300px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-    overflow: hidden;
-}
-
-#chat-header {
-    background: #0f172a;
-    color: white;
-    padding: 10px;
-    font-weight: bold;
-}
-
-#chat-body {
-    padding: 10px;
-}
-
-#chat-body button {
-    width: 100%;
-    margin-top: 5px;
-    padding: 8px;
-    border: none;
-    background: #e5e7eb;
-    cursor: pointer;
-    border-radius: 5px;
-}
-</style>
 
 <script>
-function mostrarInfoLicenciatura(val) {
-    const info = document.getElementById("info-lic");
-    const btn = document.getElementById("btn-lic");
-    const datos = {
-        administracion: {
-            texto: "Licenciatura en Administración: enfoque en negocios, gestión empresarial y emprendimiento. Duración: 6 meses intensivo o hasta 1.5 años.",
-            link: "Plan_de_Pagos.html"
-        },
-        derecho: {
-            texto: "Licenciatura en Derecho: formación jurídica con validez oficial. Duración: 6 meses intensivo o hasta 1.5 años.",
-            link: "Plan_de_Pagos.html"
-        },
-        pedagogia: {
-            texto: "Licenciatura en Pedagogía: especialización en educación y desarrollo humano. Duración: 6 meses intensivo o hasta 1.5 años.",
-            link: "Plan_de_Pagos.html"
-        }
-    };
-    if (val && datos[val]) {
-        info.style.display = "block";
-        info.textContent = datos[val].texto;
-        btn.style.display = "inline-block";
-        btn.href = datos[val].link;
-    } else {
-        info.style.display = "none";
-        btn.style.display = "none";
-    }
+var chatOpen = false;
+function toggleChat(){
+  chatOpen=!chatOpen;
+  document.getElementById('chatbox').style.display=chatOpen?'block':'none';
+  document.getElementById('chat-notif').style.display='none';
 }
-
-function toggleChat() {
-    let chat = document.getElementById("chatbot");
-    chat.style.display = (chat.style.display === "none") ? "block" : "none";
+function toggleMenu(){
+  document.getElementById('mobileMenu').classList.toggle('open');
 }
-
-function respuesta(tipo) {
-    let chat = document.getElementById("chat-body");
-
-    let texto = "";
-
-    if(tipo === "prepa") {
-        texto = "Puedes terminar la preparatoria desde 6 meses en modalidad intensiva.";
-    }
-
-    if(tipo === "licenciaturas") {
-        texto = "Las licenciaturas disponibles son: Administración, Derecho y Pedagogía.";
-    }
-
-    if(tipo === "licenciatura_tiempo") {
-        texto = "La licenciatura puede completarse en 6 meses intensivo o hasta 1.5 años dependiendo del plan.";
-    }
-
-    chat.innerHTML += "<p><b>Asistente:</b> " + texto + "</p>";
+var resp={
+  prepa:{q:'📗 ¿Cómo termino la preparatoria?',a:'Puedes terminar tu preparatoria en modalidad <b>exprés (6 meses)</b> o <b>normal (12-18 meses)</b>. Certificado oficial con validez SEP en toda la República. <a href="preparatoria.html" style="color:#c9a84c">Ver más →</a>'},
+  licenciatura:{q:'🎓 ¿Qué licenciaturas ofrecen?',a:'Ofrecemos <b>Licenciatura en Administración</b> (más popular), con título oficial Acuerdo 286 SEP. Duración desde 8 meses exprés. <a href="administracion.html" style="color:#c9a84c">Ver detalles →</a>'},
+  tiempo:{q:'⏱ ¿Cuánto tiempo tarda?',a:'Depende del programa:<br>📘 Secundaria: desde 4 meses<br>📗 Preparatoria: desde 6 meses<br>🎓 Licenciatura: desde 8 meses'},
+  costo:{q:'💰 ¿Cuánto cuesta?',a:'Los planes inician desde <b>$1,111/mes</b> para licenciatura, con inscripción de $1,500. <a href="Plan_de_Pagos.html" style="color:#c9a84c">Ver todos los planes →</a>'}
+};
+function chatReply(k){
+  var r=resp[k];
+  var msgs=document.getElementById('chat-msgs');
+  var opts=document.getElementById('chat-opts');
+  var u=document.createElement('div');u.className='msg user';u.textContent=r.q;msgs.appendChild(u);
+  opts.style.display='none';
+  setTimeout(function(){
+    var b=document.createElement('div');b.className='msg bot';b.innerHTML=r.a;msgs.appendChild(b);
+    var wa=document.createElement('div');wa.className='msg bot';wa.innerHTML='¿Más dudas? <a href="https://wa.me/529841275583" target="_blank" style="color:#16a34a;font-weight:600">WhatsApp →</a>';msgs.appendChild(wa);
+    msgs.scrollTop=msgs.scrollHeight;opts.style.display='flex';
+  },600);
 }
-
-function irWhats() {
-    window.open("https://wa.me/521XXXXXXXXXX", "_blank");
-}
+setTimeout(function(){if(!chatOpen)toggleChat();},10000);
 </script>
-
-
-<script>
-function responder() {
-    let input = document.getElementById("userInput").value.toLowerCase();
-    let chat = document.getElementById("chat-body");
-
-    let respuesta = "Un asesor te contactará para darte más información.";
-
-    if(input.includes("precio") || input.includes("costo")) {
-        respuesta = "Los planes inician desde $1,600 mensuales.";
-    }
-    else if(input.includes("tiempo")) {
-        respuesta = "Puedes terminar en modalidad exprés desde 8 meses.";
-    }
-    else if(input.includes("validez")) {
-        respuesta = "Las certificaciones cuentan con validez oficial en México.";
-    }
-
-    chat.innerHTML += "<p><b>Tú:</b> " + input + "</p>";
-    chat.innerHTML += "<p><b>Asistente:</b> " + respuesta + "</p>";
-
-    document.getElementById("userInput").value = "";
-}
-</script>
-
 </body>
 </html>
