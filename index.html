@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Certificaciones y Estudios Oficiales en México | Secundaria, Preparatoria y Licenciatura</title>
+
+<meta name="description" content="Termina tu secundaria, preparatoria o licenciatura en México. Certificaciones oficiales SEP y CONOCER. Asesoría personalizada y planes accesibles.">
+
+<meta name="keywords" content="terminar secundaria México, preparatoria abierta, certificaciones SEP, acuerdo 286, CONOCER certificaciones, licenciatura México">
+
+<style>
+body { margin:0; font-family:Arial; background:#f4f6f9; color:#333; }
+
+/* HERO */
+.hero {
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+    url('https://images.unsplash.com/photo-1523580846011-d3a5bc25702b') center/cover;
+    color:white;
+    text-align:center;
+    padding:100px 20px;
+}
+
+.hero h1 { font-size:38px; }
+.hero p { font-size:18px; }
+
+.btn {
+    display:inline-block;
+    margin-top:20px;
+    background:#16a34a;
+    color:white;
+    padding:12px 25px;
+    border-radius:6px;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+/* SECTIONS */
+section { max-width:1100px; margin:auto; padding:50px 20px; }
+
+.cards {
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+.card {
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 3px 10px rgba(0,0,0,0.1);
+}
+
+/* TESTIMONIOS */
+.testimonial {
+    background:#fff;
+    padding:20px;
+    border-left:5px solid #16a34a;
+    border-radius:8px;
+    margin-bottom:15px;
+}
+
+/* CHATBOT */
+#chatbot {
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    width:300px;
+    background:white;
+    border-radius:10px;
+    box-shadow:0 5px 20px rgba(0,0,0,0.2);
+    overflow:hidden;
+    font-size:14px;
+}
+
+#chat-header {
+    background:#0f172a;
+    color:white;
+    padding:10px;
+    font-weight:bold;
+}
+
+#chat-body {
+    height:200px;
+    overflow-y:auto;
+    padding:10px;
+}
+
+#chat-input {
+    display:flex;
+}
+
+#chat-input input {
+    flex:1;
+    border:none;
+    padding:10px;
+}
+
+#chat-input button {
+    background:#16a34a;
+    color:white;
+    border:none;
+    padding:10px;
+}
+
+/* FOOTER */
+footer {
+    background:#111827;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- HERO -->
+
+<div class="hero">
+    <h1>Termina tus estudios y obtén certificaciones oficiales en México</h1>
+    <p>Secundaria, preparatoria, licenciatura y certificaciones SEP / CONOCER</p>
+    <a class="btn" href="https://wa.me/529841275583">Solicitar información</a>
+</div>
+
+<!-- SERVICIOS -->
+
+<section>
+    <h2>Programas disponibles</h2>
+    <div class="cards">
+        <div class="card"><h3>Secundaria</h3><p>Finaliza tu educación básica rápidamente.</p></div>
+        <div class="card"><h3>Preparatoria</h3><p>Opciones flexibles para concluir tu bachillerato.</p></div>
+        <div class="card"><h3>Licenciatura</h3><p>Obtén tu título con asesoría completa.</p></div>
+        <div class="card"><h3>Certificaciones</h3><p>Certificaciones oficiales con validez nacional.</p></div>
+    </div>
+</section>
+
+<!-- PLANES -->
+
+<section style="background:#0f172a; color:white; border-radius:10px;">
+    <h2>Planes accesibles</h2>
+    <p>Desde $1,600 mensuales</p>
+    <p>Modalidad exprés o flexible</p>
+</section>
+
+<!-- TESTIMONIOS -->
+
+<section>
+    <h2>Testimonios</h2>
+
+```
+<div class="testimonial">
+    “Gracias a este programa terminé mi preparatoria en pocos meses.” – María G.
+</div>
+
+<div class="testimonial">
+    “El proceso fue claro y siempre me apoyaron.” – Carlos R.
+</div>
+
+<div class="testimonial">
+    “Ahora tengo mi certificado y mejores oportunidades laborales.” – Ana L.
+</div>
+```
+
+</section>
+
+<!-- CTA -->
+
+<section style="text-align:center;">
+    <h2>Inicia hoy mismo</h2>
+    <a class="btn" href="https://wa.me/521XXXXXXXXXX">Hablar por WhatsApp</a>
+</section>
+
+<footer>
+    <p>© 2026 Educación y Certificaciones en México</p>
+    <p>Sitio informativo. Procesos sujetos a instituciones oficiales.</p>
+</footer>
+
+<!-- CHATBOT -->
+
+<!-- BOTÓN CHAT -->
+
+<div id="chat-toggle" onclick="toggleChat()">💬</div>
+
+<!-- CHATBOT -->
+
+<div id="chatbot">
+    <div id="chat-header">
+        Asistente
+        <span onclick="toggleChat()" style="float:right; cursor:pointer;">✖</span>
+    </div>
+
+```
+<div id="chat-body">
+    <p><b>Asistente:</b> Hola 👋 ¿En qué podemos ayudarte?</p>
+
+    <button onclick="respuesta('prepa')">¿En cuánto tiempo termino la preparatoria?</button><br><br>
+    <button onclick="respuesta('licenciaturas')">¿Qué licenciaturas hay?</button><br><br>
+    <button onclick="respuesta('licenciatura_tiempo')">¿Cuánto dura la licenciatura?</button><br><br>
+    <button onclick="irWhats()">Quiero más información</button>
+</div>
+```
+
+</div>
+
+<style>
+#chat-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #16a34a;
+    color: white;
+    padding: 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+#chatbot {
+    display: none;
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    width: 300px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    overflow: hidden;
+}
+
+#chat-header {
+    background: #0f172a;
+    color: white;
+    padding: 10px;
+    font-weight: bold;
+}
+
+#chat-body {
+    padding: 10px;
+}
+
+#chat-body button {
+    width: 100%;
+    margin-top: 5px;
+    padding: 8px;
+    border: none;
+    background: #e5e7eb;
+    cursor: pointer;
+    border-radius: 5px;
+}
+</style>
+
+<script>
+function toggleChat() {
+    let chat = document.getElementById("chatbot");
+    chat.style.display = (chat.style.display === "none") ? "block" : "none";
+}
+
+function respuesta(tipo) {
+    let chat = document.getElementById("chat-body");
+
+    let texto = "";
+
+    if(tipo === "prepa") {
+        texto = "Puedes terminar la preparatoria desde 6 meses en modalidad intensiva.";
+    }
+
+    if(tipo === "licenciaturas") {
+        texto = "Las licenciaturas disponibles son: Administración, Derecho y Pedagogía.";
+    }
+
+    if(tipo === "licenciatura_tiempo") {
+        texto = "La licenciatura puede completarse en 6 meses intensivo o hasta 1.5 años dependiendo del plan.";
+    }
+
+    chat.innerHTML += "<p><b>Asistente:</b> " + texto + "</p>";
+}
+
+function irWhats() {
+    window.open("https://wa.me/521XXXXXXXXXX", "_blank");
+}
+</script>
+
+
+<script>
+function responder() {
+    let input = document.getElementById("userInput").value.toLowerCase();
+    let chat = document.getElementById("chat-body");
+
+    let respuesta = "Un asesor te contactará para darte más información.";
+
+    if(input.includes("precio") || input.includes("costo")) {
+        respuesta = "Los planes inician desde $1,600 mensuales.";
+    }
+    else if(input.includes("tiempo")) {
+        respuesta = "Puedes terminar en modalidad exprés desde 8 meses.";
+    }
+    else if(input.includes("validez")) {
+        respuesta = "Las certificaciones cuentan con validez oficial en México.";
+    }
+
+    chat.innerHTML += "<p><b>Tú:</b> " + input + "</p>";
+    chat.innerHTML += "<p><b>Asistente:</b> " + respuesta + "</p>";
+
+    document.getElementById("userInput").value = "";
+}
+</script>
+
+</body>
+</html>
