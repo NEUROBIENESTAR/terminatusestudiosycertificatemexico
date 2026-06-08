@@ -931,25 +931,36 @@ function selectLevel(level) {
 
 function submitForm(e, level) {
   e.preventDefault();
-  const form   = document.getElementById(`frm-${level}`);
-  const btn    = document.getElementById(`btn-${level}`);
-  const spin   = document.getElementById(`spin-${level}`);
-  const msg    = document.getElementById(`msg-${level}`);
-  const url    = level === 'sec' ? SCRIPT_URL_SEC : SCRIPT_URL_PREPA;
+  const form = document.getElementById(`frm-${level}`);
+  const btn  = document.getElementById(`btn-${level}`);
+  const spin = document.getElementById(`spin-${level}`);
+  const msg  = document.getElementById(`msg-${level}`);
+  const url  = level === 'sec' ? SCRIPT_URL_SEC : SCRIPT_URL_PREPA;
 
-  // UI: loading state
   btn.disabled = true;
   btn.querySelector('.btn-text').style.display = 'none';
   spin.style.display = 'block';
   msg.className = 'msg-box';
 
-  const data = new FormData(form);
-  data.append('nivel', level === 'sec' ? 'Secundaria' : 'Preparatoria');
-  data.append('timestamp', new Date().toLocaleString('es-MX'));
+  const params = new URLSearchParams();
 
-  fetch(url, { method:'POST', body: data })
+  form.querySelectorAll('input:not([type=checkbox]), select, textarea').forEach(el => {
+    if (el.name) params.append(el.name, el.value);
+  });
+
+  form.querySelectorAll('input[type=checkbox]').forEach(el => {
+    if (el.name) params.append(el.name, el.checked ? 'Sí' : 'No');
+  });
+
+  params.append('nivel', level === 'sec' ? 'Secundaria' : 'Preparatoria');
+
+  fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: params.toString()
+  })
     .then(r => r.text())
-    .then(res => {
+    .then(() => {
       msg.textContent = '✅ ¡Solicitud enviada con éxito! En breve recibirá un correo de confirmación. Guarde esta pantalla como comprobante.';
       msg.className = 'msg-box success visible';
       form.reset();
@@ -964,7 +975,6 @@ function submitForm(e, level) {
       spin.style.display = 'none';
     });
 }
-
 // ── Seleccionar pestaña por defecto al cargar ──
 document.addEventListener('DOMContentLoaded', function() {
   selectLevel('sec');
