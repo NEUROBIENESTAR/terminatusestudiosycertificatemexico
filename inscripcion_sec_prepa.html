@@ -488,13 +488,8 @@
             <input type="date" name="fecha_inscripcion" required>
           </div>
           <div class="field">
-            <label>Grado a cursar <span class="req">*</span></label>
-            <select name="grado" required>
-              <option value="">Selecciona…</option>
-              <option>1° Secundaria</option>
-              <option>2° Secundaria</option>
-              <option>3° Secundaria</option>
-            </select>
+            <label>Nivel</label>
+            <input type="text" name="grado" value="Secundaria (Certificado Completo)" readonly style="background:#f0f0f0;color:var(--slate);">
           </div>
           <div class="field">
             <label>Costo de inscripción</label>
@@ -584,16 +579,17 @@
         </div>
       </fieldset>
 
+      <div id="tutor-sec-wrap">
       <fieldset>
-        <legend>Tutor / Responsable</legend>
+        <legend>Tutor / Responsable <span style="font-size:11px;font-weight:400;color:var(--slate)">(requerido para menores de 18 años)</span></legend>
         <div class="grid grid-2">
           <div class="field">
-            <label>Nombre completo del tutor <span class="req">*</span></label>
-            <input type="text" name="tutor_nombre" required>
+            <label>Nombre completo del tutor <span class="req tutor-req-sec">*</span></label>
+            <input type="text" name="tutor_nombre" id="tutor_nombre_sec">
           </div>
           <div class="field">
-            <label>Parentesco <span class="req">*</span></label>
-            <select name="tutor_parentesco" required>
+            <label>Parentesco <span class="req tutor-req-sec">*</span></label>
+            <select name="tutor_parentesco" id="tutor_parentesco_sec">
               <option value="">Selecciona…</option>
               <option>Madre</option><option>Padre</option>
               <option>Abuelo/a</option><option>Tío/a</option>
@@ -601,8 +597,8 @@
             </select>
           </div>
           <div class="field">
-            <label>Teléfono del tutor <span class="req">*</span></label>
-            <input type="tel" name="tutor_telefono" required>
+            <label>Teléfono del tutor <span class="req tutor-req-sec">*</span></label>
+            <input type="tel" name="tutor_telefono" id="tutor_telefono_sec">
           </div>
           <div class="field">
             <label>Correo del tutor</label>
@@ -610,6 +606,7 @@
           </div>
         </div>
       </fieldset>
+      </div>
 
       <fieldset>
         <legend>Referencias Personales</legend>
@@ -669,13 +666,8 @@
             <input type="date" name="fecha_inscripcion" required>
           </div>
           <div class="field">
-            <label>Grado a cursar <span class="req">*</span></label>
-            <select name="grado" required>
-              <option value="">Selecciona…</option>
-              <option>1° Preparatoria</option>
-              <option>2° Preparatoria</option>
-              <option>3° Preparatoria</option>
-            </select>
+            <label>Nivel</label>
+            <input type="text" name="grado" value="Preparatoria (Certificado Completo)" readonly style="background:#f0f0f0;color:var(--slate);">
           </div>
           <div class="field">
             <label>Costo de inscripción</label>
@@ -864,7 +856,7 @@
       <!-- ── CONFORMIDAD CONDICIONES ── -->
       <div class="privacy-box terms-accept-box">
         <div class="terms-accept-header">✍️ Firma de Conformidad</div>
-        <p class="terms-accept-intro">El suscrito, alumno (o padre/tutor en su caso), declara haber leído la totalidad de los lineamientos y condiciones generales y manifiesta su conformidad con su contenido y alcances:</p>
+        <p class="terms-accept-intro">El suscrito, alumno (o padre/tutor en caso de ser menor de edad), declara haber leído la totalidad de los lineamientos y condiciones generales y manifiesta su conformidad con su contenido y alcances:</p>
         <div class="check-col">
           <div class="check-row">
             <input type="checkbox" id="conf-costos" name="conf_costos" value="Sí" required>
@@ -888,7 +880,7 @@
             <label>Nombre completo del alumno <span class="req">*</span></label>
             <input type="text" name="firma_alumno" placeholder="Escribe tu nombre completo como firma de conformidad" required>
           </div>
-          <div class="firma-field">
+          <div class="firma-field" id="firma-tutor-wrap">
             <label>Nombre del padre/tutor <span style="font-size:11px;color:var(--slate)">(si el alumno es menor de edad)</span></label>
             <input type="text" name="firma_tutor" placeholder="Nombre completo del padre o tutor">
           </div>
@@ -976,6 +968,11 @@ function submitForm(e, level) {
 // ── Seleccionar pestaña por defecto al cargar ──
 document.addEventListener('DOMContentLoaded', function() {
   selectLevel('sec');
+  // Tutor sections hidden by default (mostrar solo si menor de edad)
+  const tutorWrap = document.getElementById('tutor-sec-wrap');
+  if (tutorWrap) tutorWrap.style.display = 'none';
+  const firmaTutorWrap = document.getElementById('firma-tutor-wrap');
+  if (firmaTutorWrap) firmaTutorWrap.style.display = 'none';
 });
 
 // Auto-uppercase CURP
@@ -983,13 +980,37 @@ document.querySelectorAll('input[name=curp]').forEach(el => {
   el.addEventListener('input', () => el.value = el.value.toUpperCase());
 });
 
-// Auto-calculate age from DOB
+// Auto-calculate age from DOB + show/hide tutor section
+function updateTutorVisibility(age, formEl) {
+  const isMinor = age < 18;
+  const formId = formEl.id;
+
+  if (formId === 'frm-sec') {
+    const wrap = document.getElementById('tutor-sec-wrap');
+    if (wrap) {
+      wrap.style.display = isMinor ? '' : 'none';
+      ['tutor_nombre_sec','tutor_parentesco_sec','tutor_telefono_sec'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.required = isMinor;
+      });
+    }
+  }
+
+  if (formId === 'frm-prepa') {
+    const firmaTutorWrap = document.getElementById('firma-tutor-wrap');
+    if (firmaTutorWrap) firmaTutorWrap.style.display = isMinor ? '' : 'none';
+  }
+}
+
 document.querySelectorAll('input[name=fecha_nacimiento]').forEach(el => {
   el.addEventListener('change', function() {
     const dob  = new Date(this.value);
     const age  = Math.floor((Date.now() - dob) / (365.25*24*3600*1000));
     const form = this.closest('form');
-    if (form) form.querySelector('input[name=edad]').value = age > 0 ? age : '';
+    if (form) {
+      form.querySelector('input[name=edad]').value = age > 0 ? age : '';
+      updateTutorVisibility(age > 0 ? age : 0, form);
+    }
   });
 });
 </script>
