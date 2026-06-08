@@ -925,8 +925,8 @@
 //  ⚠️  CONFIGURA ESTA URL ANTES DE PUBLICAR
 //  Sustituye con tu URL de Google Apps Script
 // ─────────────────────────────────────────────
-const SCRIPT_URL_SEC   = 'https://script.google.com/macros/s/AKfycbyo4kpNIM0oTFRnqOzxXV56H6puh8lMPWkyyw8mvRQFMrDPgR2Y555ywfP-ICpnVkNUXA/exec';
-const SCRIPT_URL_PREPA = 'https://script.google.com/macros/s/AKfycbyo4kpNIM0oTFRnqOzxXV56H6puh8lMPWkyyw8mvRQFMrDPgR2Y555ywfP-ICpnVkNUXA/exec;
+const SCRIPT_URL_SEC   = 'TU_URL_APPS_SCRIPT_SECUNDARIA_AQUI';
+const SCRIPT_URL_PREPA = 'TU_URL_APPS_SCRIPT_PREPA_AQUI';
 // (pueden ser la misma URL si un solo script maneja ambos)
 
 function selectLevel(level) {
@@ -972,6 +972,11 @@ function submitForm(e, level) {
       spin.style.display = 'none';
     });
 }
+
+// ── Seleccionar pestaña por defecto al cargar ──
+document.addEventListener('DOMContentLoaded', function() {
+  selectLevel('sec');
+});
 
 // Auto-uppercase CURP
 document.querySelectorAll('input[name=curp]').forEach(el => {
