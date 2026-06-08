@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ficha de Inscripción – Secundaria y Preparatoria | Estudios y Certificaciones México</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0d1b3e;
+    --gold: #c9a84c;
+    --gold-light: #e8c96a;
+    --cream: #faf8f3;
+    --cream2: #f2ede0;
+    --slate: #4a5568;
+    --red: #c0392b;
+    --green: #1a7a4a;
+    --border: #d4c9a8;
+    --shadow: 0 4px 24px rgba(13,27,62,0.10);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--navy);
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--navy);
+    padding: 28px 0 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(
+      -45deg,
+      transparent, transparent 18px,
+      rgba(201,168,76,0.06) 18px, rgba(201,168,76,0.06) 19px
+    );
+  }
+  .header-inner { position: relative; z-index: 1; }
+  .badge {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--navy);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    padding: 4px 14px;
+    border-radius: 2px;
+    margin-bottom: 14px;
+  }
+  header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.5rem, 4vw, 2.4rem);
+    color: #fff;
+    letter-spacing: 0.5px;
+    line-height: 1.2;
+  }
+  header h1 span { color: var(--gold); }
+  header p {
+    color: rgba(255,255,255,0.6);
+    font-size: 13px;
+    margin-top: 8px;
+    letter-spacing: 0.3px;
+  }
+
+  /* ── LEVEL SELECTOR ── */
+  .level-wrap {
+    max-width: 760px;
+    margin: 36px auto 0;
+    padding: 0 20px;
+  }
+  .level-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    color: var(--slate);
+    margin-bottom: 12px;
+  }
+  .level-tabs {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .level-tab {
+    flex: 1;
+    min-width: 160px;
+    border: 2px solid var(--border);
+    background: #fff;
+    border-radius: 10px;
+    padding: 18px 16px;
+    cursor: pointer;
+    transition: all .22s ease;
+    text-align: center;
+  }
+  .level-tab:hover { border-color: var(--gold); }
+  .level-tab.active {
+    border-color: var(--navy);
+    background: var(--navy);
+    color: #fff;
+    box-shadow: var(--shadow);
+  }
+  .level-tab .icon { font-size: 26px; margin-bottom: 6px; }
+  .level-tab .name { font-weight: 600; font-size: 15px; display: block; }
+  .level-tab .desc { font-size: 12px; opacity: .65; display: block; margin-top: 2px; }
+  .level-tab.active .desc { opacity: .75; }
+
+  /* ── MAIN CARD ── */
+  .card {
+    max-width: 760px;
+    margin: 28px auto 48px;
+    padding: 0 20px;
+  }
+  .form-card {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    display: none;
+  }
+  .form-card.visible { display: block; animation: fadeUp .35s ease; }
+  @keyframes fadeUp {
+    from { opacity:0; transform:translateY(16px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+
+  .section-header {
+    background: linear-gradient(135deg, var(--navy) 0%, #1a2d5a 100%);
+    padding: 20px 32px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .section-header .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--gold); flex-shrink: 0;
+  }
+  .section-header h2 {
+    font-family: 'Playfair Display', serif;
+    color: #fff; font-size: 1.15rem;
+  }
+  .section-header small {
+    color: rgba(255,255,255,.55);
+    font-size: 11.5px; margin-left: auto;
+  }
+
+  form { padding: 32px; }
+
+  /* ── FIELDSETS ── */
+  fieldset {
+    border: none;
+    margin-bottom: 32px;
+  }
+  legend {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    background: var(--cream2);
+    padding: 5px 12px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    border-left: 3px solid var(--gold);
+  }
+
+  .grid { display: grid; gap: 18px; }
+  .grid-2 { grid-template-columns: 1fr 1fr; }
+  .grid-3 { grid-template-columns: 1fr 1fr 1fr; }
+  @media(max-width:580px) {
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+    form { padding: 24px 20px; }
+  }
+
+  /* ── FIELDS ── */
+  .field { display: flex; flex-direction: column; gap: 6px; }
+  label {
+    font-size: 12.5px;
+    font-weight: 500;
+    color: var(--slate);
+    letter-spacing: 0.2px;
+  }
+  label .req { color: var(--red); margin-left: 2px; }
+
+  input[type=text],
+  input[type=email],
+  input[type=tel],
+  input[type=date],
+  input[type=number],
+  select, textarea {
+    border: 1.5px solid #ddd;
+    border-radius: 8px;
+    padding: 11px 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--navy);
+    background: var(--cream);
+    transition: border-color .18s, box-shadow .18s;
+    outline: none;
+    width: 100%;
+  }
+  input:focus, select:focus, textarea:focus {
+    border-color: var(--navy);
+    box-shadow: 0 0 0 3px rgba(13,27,62,0.08);
+    background: #fff;
+  }
+  textarea { resize: vertical; min-height: 70px; }
+  select { appearance: none; cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%234a5568' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 36px;
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--cream2);
+    margin: 8px 0 28px;
+  }
+
+  /* ── REFERENCES TABLE ── */
+  .ref-row { display: grid; grid-template-columns: 1fr 1.5fr 1fr; gap: 12px; align-items: end; }
+  @media(max-width:580px){ .ref-row { grid-template-columns: 1fr; } }
+  .ref-row + .ref-row { margin-top: 12px; }
+
+  /* ── PRIVACY ── */
+  .privacy-box {
+    background: #f0f4ff;
+    border: 1.5px solid #b8c8f0;
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin-bottom: 24px;
+  }
+  .privacy-box p {
+    font-size: 12.5px;
+    color: #2d3a5e;
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+  .privacy-box strong { color: var(--navy); }
+  .check-row { display: flex; align-items: flex-start; gap: 10px; }
+  .check-row input[type=checkbox] {
+    width: 17px; height: 17px; flex-shrink: 0;
+    accent-color: var(--navy); margin-top: 1px;
+    cursor: pointer;
+  }
+  .check-row label { font-size: 13px; color: var(--navy); cursor: pointer; line-height: 1.5; }
+
+  /* ── SUBMIT ── */
+  .submit-wrap { text-align: center; padding-top: 8px; }
+  .btn-submit {
+    background: linear-gradient(135deg, var(--navy) 0%, #1a2d5a 100%);
+    color: #fff;
+    border: none;
+    padding: 15px 48px;
+    border-radius: 50px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform .15s, box-shadow .15s, opacity .15s;
+    box-shadow: 0 6px 20px rgba(13,27,62,0.25);
+    letter-spacing: 0.3px;
+    position: relative;
+  }
+  .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(13,27,62,0.3); }
+  .btn-submit:active { transform: translateY(0); }
+  .btn-submit:disabled { opacity: .6; cursor: not-allowed; transform: none; }
+  .btn-submit .spinner {
+    display: none;
+    width: 18px; height: 18px;
+    border: 2px solid rgba(255,255,255,0.35);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin .7s linear infinite;
+    margin: 0 auto;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .note { font-size: 11.5px; color: var(--slate); margin-top: 10px; }
+
+  /* ── SUCCESS / ERROR ── */
+  .msg-box {
+    display: none;
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-top: 24px;
+    font-size: 14px;
+    line-height: 1.55;
+    text-align: center;
+  }
+  .msg-box.success { background: #e8f5ef; border: 1.5px solid #a3d9bc; color: var(--green); }
+  .msg-box.error   { background: #fdf0ef; border: 1.5px solid #f0b8b3; color: var(--red); }
+  .msg-box.visible { display: block; animation: fadeUp .3s ease; }
+
+  /* ── TERMS & CONDITIONS ── */
+  .terms-box {
+    border: 1.5px solid #c8d8f0;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+  .terms-title {
+    background: linear-gradient(90deg, var(--navy) 0%, #1a2d5a 100%);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    padding: 12px 20px;
+  }
+  .terms-body { padding: 20px; }
+  .terms-section { margin-bottom: 20px; }
+  .terms-section:last-child { margin-bottom: 0; }
+  .terms-section-title {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--navy);
+    border-bottom: 2px solid var(--gold);
+    padding-bottom: 6px;
+    margin-bottom: 12px;
+    display: inline-block;
+  }
+  .terms-list { padding-left: 20px; }
+  .terms-list li {
+    font-size: 13px; color: var(--slate);
+    line-height: 1.65; margin-bottom: 8px;
+  }
+  .terms-list li strong { color: var(--navy); }
+  .terms-docs { margin: 6px 0 8px 16px; }
+  .terms-docs li { font-size: 12.5px; margin-bottom: 3px; }
+  .terms-warning {
+    display: block;
+    background: #fff3f2;
+    border-left: 3px solid var(--red);
+    border-radius: 0 6px 6px 0;
+    padding: 8px 12px;
+    font-size: 12.5px;
+    color: var(--red);
+    margin-top: 8px;
+    font-weight: 500;
+  }
+  .terms-note {
+    font-size: 12.5px; color: var(--slate);
+    line-height: 1.6; margin-top: 10px;
+  }
+  .terms-list-ul { padding-left: 20px; margin-top: 8px; }
+  .terms-list-ul li { font-size: 13px; color: var(--slate); line-height: 1.65; margin-bottom: 6px; }
+
+  /* Cost grid */
+  .cost-box { border-color: var(--gold); }
+  .cost-box .terms-title { background: linear-gradient(90deg, #8a6820 0%, var(--gold) 100%); }
+  .cost-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    padding: 18px 20px 8px;
+  }
+  @media(max-width:580px){ .cost-grid { grid-template-columns: 1fr 1fr; } }
+  .cost-item {
+    display: flex; flex-direction: column; align-items: center;
+    text-align: center;
+    background: var(--cream2);
+    border-radius: 10px;
+    padding: 14px 10px;
+    border: 1.5px solid var(--border);
+  }
+  .cost-item.highlight {
+    background: var(--navy); color: #fff;
+    border-color: var(--navy);
+  }
+  .cost-amount {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; font-weight: 700;
+    color: var(--navy); line-height: 1.1;
+  }
+  .cost-item.highlight .cost-amount { color: var(--gold); }
+  .cost-amount small { font-size: 0.7rem; font-family: 'DM Sans', sans-serif; }
+  .cost-label { font-size: 11px; color: var(--slate); margin-top: 4px; text-align: center; }
+  .cost-item.highlight .cost-label { color: rgba(255,255,255,0.7); }
+  .cost-note { font-size: 12px; color: var(--slate); padding: 10px 20px 16px; line-height: 1.55; }
+
+  /* Timeline */
+  .timeline-grid {
+    display: grid; grid-template-columns: repeat(3,1fr);
+    gap: 10px; margin-top: 10px;
+  }
+  @media(max-width:580px){ .timeline-grid { grid-template-columns: 1fr; } }
+  .tl-item {
+    background: var(--cream2);
+    border-radius: 8px; padding: 12px;
+    display: flex; flex-direction: column;
+    border: 1.5px solid var(--border);
+    text-align: center;
+  }
+  .tl-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem; font-weight: 700;
+    color: var(--navy);
+  }
+  .tl-desc { font-size: 11.5px; color: var(--slate); margin-top: 4px; }
+
+  /* Conformity accept box */
+  .terms-accept-box {
+    background: #f0f5ff !important;
+    border-color: #a0b8e8 !important;
+  }
+  .terms-accept-header {
+    font-weight: 700; font-size: 14px;
+    color: var(--navy); margin-bottom: 10px;
+  }
+  .terms-accept-intro {
+    font-size: 13px; color: var(--slate);
+    line-height: 1.6; margin-bottom: 16px;
+  }
+  .check-col { display: flex; flex-direction: column; }
+  .firma-row {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 16px; margin-top: 20px;
+  }
+  @media(max-width:580px){ .firma-row { grid-template-columns: 1fr; } }
+  .firma-field { display: flex; flex-direction: column; gap: 6px; }
+  .firma-field label { font-size: 12.5px; font-weight: 500; color: var(--slate); }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 24px;
+    font-size: 12px;
+    color: rgba(13,27,62,0.45);
+    border-top: 1px solid var(--cream2);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="badge">Ficha de Inscripción</div>
+    <h1>Estudios y <span>Certificaciones México</span></h1>
+    <p>Secundaria &amp; Preparatoria · Sistema Incorporado</p>
+  </div>
+</header>
+
+<!-- LEVEL SELECTOR -->
+<div class="level-wrap">
+  <p class="level-label">Selecciona tu nivel de inscripción</p>
+  <div class="level-tabs">
+    <div class="level-tab" data-level="sec" onclick="selectLevel('sec')">
+      <div class="icon">📚</div>
+      <span class="name">Secundaria</span>
+      <span class="desc">1°, 2° y 3° grado</span>
+    </div>
+    <div class="level-tab" data-level="prepa" onclick="selectLevel('prepa')">
+      <div class="icon">🎓</div>
+      <span class="name">Preparatoria</span>
+      <span class="desc">Bachillerato general</span>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN CARD -->
+<div class="card">
+
+  <!-- ══ SECUNDARIA ══ -->
+  <div class="form-card" id="form-sec">
+    <div class="section-header">
+      <div class="dot"></div>
+      <h2>Solicitud de Inscripción – Secundaria</h2>
+      <small>Todos los campos marcados * son obligatorios</small>
+    </div>
+    <form id="frm-sec" onsubmit="submitForm(event,'sec')">
+
+      <fieldset>
+        <legend>Datos del Curso</legend>
+        <div class="grid grid-2">
+          <div class="field">
+            <label>Fecha de inscripción <span class="req">*</span></label>
+            <input type="date" name="fecha_inscripcion" required>
+          </div>
+          <div class="field">
+            <label>Grado a cursar <span class="req">*</span></label>
+            <select name="grado" required>
+              <option value="">Selecciona…</option>
+              <option>1° Secundaria</option>
+              <option>2° Secundaria</option>
+              <option>3° Secundaria</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Costo de inscripción</label>
+            <input type="text" name="costo_inscripcion" placeholder="$">
+          </div>
+          <div class="field">
+            <label>Costo de colegiatura (24 sem.)</label>
+            <input type="text" name="costo_colegiatura" placeholder="$">
+          </div>
+          <div class="field">
+            <label>Costo de examen</label>
+            <input type="text" name="costo_examen" placeholder="$">
+          </div>
+          <div class="field">
+            <label>Horario</label>
+            <input type="text" name="horario" placeholder="Ej. Lunes a Viernes 8:00–14:00">
+          </div>
+          <div class="field">
+            <label>Fecha de inicio</label>
+            <input type="date" name="fecha_inicio">
+          </div>
+          <div class="field">
+            <label>Observaciones</label>
+            <input type="text" name="observaciones">
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Datos del Alumno</legend>
+        <div class="grid grid-3">
+          <div class="field">
+            <label>Apellido paterno <span class="req">*</span></label>
+            <input type="text" name="ap_paterno" required>
+          </div>
+          <div class="field">
+            <label>Apellido materno <span class="req">*</span></label>
+            <input type="text" name="ap_materno" required>
+          </div>
+          <div class="field">
+            <label>Nombre(s) <span class="req">*</span></label>
+            <input type="text" name="nombres" required>
+          </div>
+        </div>
+        <div class="grid grid-3" style="margin-top:18px">
+          <div class="field">
+            <label>Fecha de nacimiento <span class="req">*</span></label>
+            <input type="date" name="fecha_nacimiento" required>
+          </div>
+          <div class="field">
+            <label>Edad <span class="req">*</span></label>
+            <input type="number" name="edad" min="10" max="30" required>
+          </div>
+          <div class="field">
+            <label>Sexo <span class="req">*</span></label>
+            <select name="sexo" required>
+              <option value="">Selecciona…</option>
+              <option>Masculino</option>
+              <option>Femenino</option>
+              <option>Prefiero no decir</option>
+            </select>
+          </div>
+        </div>
+        <div class="grid grid-2" style="margin-top:18px">
+          <div class="field">
+            <label>CURP <span class="req">*</span></label>
+            <input type="text" name="curp" maxlength="18" pattern="[A-Z]{4}[0-9]{6}[HM][A-Z]{5}[A-Z0-9]{2}" placeholder="18 caracteres" style="text-transform:uppercase" required>
+          </div>
+          <div class="field">
+            <label>Teléfono / WhatsApp <span class="req">*</span></label>
+            <input type="tel" name="telefono" placeholder="10 dígitos" required>
+          </div>
+          <div class="field">
+            <label>Correo electrónico <span class="req">*</span></label>
+            <input type="email" name="correo" required>
+          </div>
+          <div class="field">
+            <label>Domicilio / Ciudad <span class="req">*</span></label>
+            <input type="text" name="domicilio" required>
+          </div>
+        </div>
+        <div class="grid grid-1" style="margin-top:18px">
+          <div class="field">
+            <label>Escuela de procedencia</label>
+            <input type="text" name="escuela_procedencia" placeholder="Nombre y municipio">
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Tutor / Responsable</legend>
+        <div class="grid grid-2">
+          <div class="field">
+            <label>Nombre completo del tutor <span class="req">*</span></label>
+            <input type="text" name="tutor_nombre" required>
+          </div>
+          <div class="field">
+            <label>Parentesco <span class="req">*</span></label>
+            <select name="tutor_parentesco" required>
+              <option value="">Selecciona…</option>
+              <option>Madre</option><option>Padre</option>
+              <option>Abuelo/a</option><option>Tío/a</option>
+              <option>Hermano/a</option><option>Otro</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Teléfono del tutor <span class="req">*</span></label>
+            <input type="tel" name="tutor_telefono" required>
+          </div>
+          <div class="field">
+            <label>Correo del tutor</label>
+            <input type="email" name="tutor_correo">
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Referencias Personales</legend>
+        <div class="ref-row">
+          <div class="field"><label>Teléfono</label><input type="tel" name="ref1_tel" placeholder="Referencia 1"></div>
+          <div class="field"><label>Nombre</label><input type="text" name="ref1_nombre"></div>
+          <div class="field"><label>Parentesco</label><input type="text" name="ref1_parentesco"></div>
+        </div>
+        <div class="ref-row">
+          <div class="field"><label>Teléfono</label><input type="tel" name="ref2_tel" placeholder="Referencia 2"></div>
+          <div class="field"><label>Nombre</label><input type="text" name="ref2_nombre"></div>
+          <div class="field"><label>Parentesco</label><input type="text" name="ref2_parentesco"></div>
+        </div>
+      </fieldset>
+
+      <div class="privacy-box">
+        <p><strong>Aviso de Privacidad</strong><br>
+        De conformidad con la <strong>Ley Federal de Protección de Datos Personales en Posesión de Particulares (LFPDPPP)</strong> y su Reglamento, le informamos que los datos personales que proporcione a través de esta solicitud serán utilizados exclusivamente para: (a) gestionar su proceso de inscripción y trayectoria académica, (b) comunicarle información relacionada con sus estudios, pagos y actividades institucionales, y (c) cumplir con las obligaciones derivadas de la prestación del servicio educativo. Sus datos no serán compartidos con terceros ajenos a la institución sin su consentimiento, salvo obligación legal. Tiene derecho de acceso, rectificación, cancelación y oposición (ARCO) a sus datos.</p>
+        <div class="check-row">
+          <input type="checkbox" id="priv-sec" name="acepta_privacidad" value="Sí" required>
+          <label for="priv-sec">He leído y acepto el Aviso de Privacidad. Doy mi consentimiento expreso para el tratamiento de mis datos personales con los fines señalados. <span class="req">*</span></label>
+        </div>
+      </div>
+
+      <div class="privacy-box" style="background:#fff8e8;border-color:#e8c96a;">
+        <div class="check-row">
+          <input type="checkbox" id="veraz-sec" name="datos_veraces" value="Sí" required>
+          <label for="veraz-sec">Declaro que la información proporcionada es verídica. Entiendo que proporcionar datos falsos puede ser causa de cancelación de la inscripción. <span class="req">*</span></label>
+        </div>
+      </div>
+
+      <div class="submit-wrap">
+        <button type="submit" class="btn-submit" id="btn-sec">
+          <span class="btn-text">Enviar Solicitud de Inscripción</span>
+          <span class="spinner" id="spin-sec"></span>
+        </button>
+        <p class="note">Al enviar, recibirá una confirmación en su correo electrónico.</p>
+        <div class="msg-box" id="msg-sec"></div>
+      </div>
+    </form>
+  </div>
+
+  <!-- ══ PREPARATORIA ══ -->
+  <div class="form-card" id="form-prepa">
+    <div class="section-header">
+      <div class="dot"></div>
+      <h2>Solicitud de Inscripción – Preparatoria</h2>
+      <small>Todos los campos marcados * son obligatorios</small>
+    </div>
+    <form id="frm-prepa" onsubmit="submitForm(event,'prepa')">
+
+      <fieldset>
+        <legend>Datos del Curso</legend>
+        <div class="grid grid-2">
+          <div class="field">
+            <label>Fecha de inscripción <span class="req">*</span></label>
+            <input type="date" name="fecha_inscripcion" required>
+          </div>
+          <div class="field">
+            <label>Grado a cursar <span class="req">*</span></label>
+            <select name="grado" required>
+              <option value="">Selecciona…</option>
+              <option>1° Preparatoria</option>
+              <option>2° Preparatoria</option>
+              <option>3° Preparatoria</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Costo de inscripción</label>
+            <input type="text" name="costo_inscripcion" placeholder="$">
+          </div>
+          <div class="field">
+            <label>Costo de colegiatura (24 sem.)</label>
+            <input type="text" name="costo_colegiatura" placeholder="$">
+          </div>
+          <div class="field">
+            <label>Costo de examen</label>
+            <input type="text" name="costo_examen" placeholder="$">
+          </div>
+          <div class="field">
+            <label>Horario</label>
+            <input type="text" name="horario" placeholder="Ej. Lunes a Viernes 8:00–14:00">
+          </div>
+          <div class="field">
+            <label>Fecha de inicio</label>
+            <input type="date" name="fecha_inicio">
+          </div>
+          <div class="field">
+            <label>Observaciones</label>
+            <input type="text" name="observaciones">
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Datos del Alumno</legend>
+        <div class="grid grid-3">
+          <div class="field">
+            <label>Apellido paterno <span class="req">*</span></label>
+            <input type="text" name="ap_paterno" required>
+          </div>
+          <div class="field">
+            <label>Apellido materno <span class="req">*</span></label>
+            <input type="text" name="ap_materno" required>
+          </div>
+          <div class="field">
+            <label>Nombre(s) <span class="req">*</span></label>
+            <input type="text" name="nombres" required>
+          </div>
+        </div>
+        <div class="grid grid-3" style="margin-top:18px">
+          <div class="field">
+            <label>Fecha de nacimiento <span class="req">*</span></label>
+            <input type="date" name="fecha_nacimiento" required>
+          </div>
+          <div class="field">
+            <label>Edad <span class="req">*</span></label>
+            <input type="number" name="edad" min="14" max="35" required>
+          </div>
+          <div class="field">
+            <label>Sexo <span class="req">*</span></label>
+            <select name="sexo" required>
+              <option value="">Selecciona…</option>
+              <option>Masculino</option>
+              <option>Femenino</option>
+              <option>Prefiero no decir</option>
+            </select>
+          </div>
+        </div>
+        <div class="grid grid-2" style="margin-top:18px">
+          <div class="field">
+            <label>CURP <span class="req">*</span></label>
+            <input type="text" name="curp" maxlength="18" pattern="[A-Z]{4}[0-9]{6}[HM][A-Z]{5}[A-Z0-9]{2}" placeholder="18 caracteres" style="text-transform:uppercase" required>
+          </div>
+          <div class="field">
+            <label>Teléfono / WhatsApp <span class="req">*</span></label>
+            <input type="tel" name="telefono" placeholder="10 dígitos" required>
+          </div>
+          <div class="field">
+            <label>Correo electrónico <span class="req">*</span></label>
+            <input type="email" name="correo" required>
+          </div>
+          <div class="field">
+            <label>Domicilio / Ciudad <span class="req">*</span></label>
+            <input type="text" name="domicilio" required>
+          </div>
+        </div>
+        <div class="grid grid-1" style="margin-top:18px">
+          <div class="field">
+            <label>Escuela de procedencia (secundaria)</label>
+            <input type="text" name="escuela_procedencia" placeholder="Nombre y municipio">
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Referencias Personales</legend>
+        <div class="ref-row">
+          <div class="field"><label>Teléfono</label><input type="tel" name="ref1_tel" placeholder="Referencia 1"></div>
+          <div class="field"><label>Nombre</label><input type="text" name="ref1_nombre"></div>
+          <div class="field"><label>Parentesco</label><input type="text" name="ref1_parentesco"></div>
+        </div>
+        <div class="ref-row">
+          <div class="field"><label>Teléfono</label><input type="tel" name="ref2_tel" placeholder="Referencia 2"></div>
+          <div class="field"><label>Nombre</label><input type="text" name="ref2_nombre"></div>
+          <div class="field"><label>Parentesco</label><input type="text" name="ref2_parentesco"></div>
+        </div>
+      </fieldset>
+
+      <!-- ── COSTOS ── -->
+      <div class="terms-box cost-box">
+        <div class="terms-title">💰 Costos del Programa</div>
+        <div class="cost-grid">
+          <div class="cost-item">
+            <span class="cost-amount">$600</span>
+            <span class="cost-label">Inscripción</span>
+          </div>
+          <div class="cost-item">
+            <span class="cost-amount">$350<small>/sem</small></span>
+            <span class="cost-label">Colegiatura · 24 semanas</span>
+          </div>
+          <div class="cost-item">
+            <span class="cost-amount">$6,000</span>
+            <span class="cost-label">Examen oficial</span>
+          </div>
+          <div class="cost-item highlight">
+            <span class="cost-amount">$15,000</span>
+            <span class="cost-label">Total estimado</span>
+          </div>
+        </div>
+        <p class="cost-note">El programa incluye: capacitación y preparación en horarios acordados, examen simulacro, registro al examen oficial y aplicación del mismo.</p>
+      </div>
+
+      <!-- ── LINEAMIENTOS Y CONDICIONES ── -->
+      <div class="terms-box">
+        <div class="terms-title">📋 Lineamientos y Condiciones Generales</div>
+        <div class="terms-body">
+
+          <div class="terms-section">
+            <div class="terms-section-title">Requisitos indispensables para presentar el examen oficial</div>
+            <ol class="terms-list">
+              <li>Para acreditar su personalidad se deben tener <strong>18 años cumplidos</strong>. Si el alumno está por cumplir 18 años, deberá esperar a contar con el INE.</li>
+              <li>En caso de ser <strong>menor de 17 años 6 meses</strong>, el padre de familia o tutor legal deberá firmar autorización y presentar INE o pasaporte vigente.</li>
+              <li>Deben contar con al menos el <strong>80% de asistencias</strong> a clases de preparación y capacitación.</li>
+              <li>Deben presentar en tiempo y forma la siguiente documentación:
+                <ul class="terms-docs">
+                  <li>Acta de nacimiento actualizada</li>
+                  <li>INE o Pasaporte vigente</li>
+                  <li>Certificado de secundaria</li>
+                  <li>CURP</li>
+                  <li>Comprobante de domicilio actualizado</li>
+                </ul>
+                <span class="terms-warning">⚠️ Sin cualquiera de los requisitos anteriores, el alumno no tendrá derecho a presentar el examen ni derecho a reembolso o reclamación alguna.</span>
+              </li>
+            </ol>
+          </div>
+
+          <div class="terms-section">
+            <div class="terms-section-title">Tiempos del proceso</div>
+            <div class="timeline-grid">
+              <div class="tl-item"><span class="tl-num">30 días antes</span><span class="tl-desc">Registro al examen oficial</span></div>
+              <div class="tl-item"><span class="tl-num">30 días hábiles</span><span class="tl-desc">Entrega de resultados del examen</span></div>
+              <div class="tl-item"><span class="tl-num">6 meses</span><span class="tl-desc">Entrega del certificado oficial (desde firma de solicitud de certificado)</span></div>
+            </div>
+            <p class="terms-note">La entrega del certificado oficial es responsabilidad de la <strong>Dirección General de Bachilleratos / SEP</strong>, y depende de ella, siempre y cuando el examen sea aprobado y se hayan cubierto la totalidad de colegiaturas y examen. En caso de retraso, la Institución Evaluadora Autorizada emitirá una <em>carta constancia de terminación de estudios</em> bajo el Acuerdo 286.</p>
+            <p class="terms-note" style="margin-top:8px">Somos <strong>centro de capacitación al examen único de la DGB</strong> y contamos con convenio con Institución Evaluadora Autorizada. La DGB de la SEP es la instancia oficial que emite el certificado.</p>
+          </div>
+
+          <div class="terms-section">
+            <div class="terms-section-title">Causas de pérdida de derechos</div>
+            <p class="terms-note">Una vez pagada la inscripción, el alumno será asignado a un grupo. Perderá todos sus derechos a aplicar el examen y a cualquier reembolso si:</p>
+            <ul class="terms-list-ul">
+              <li>Incumple con el mínimo de asistencias requeridas.</li>
+              <li>Incumple con los requisitos para la aplicación del examen.</li>
+              <li>Deja de asistir sin justificación.</li>
+              <li>Su conducta fuere contraria a los principios y valores reconocidos socialmente para la debida convivencia o a los principios y valores de la organización.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── AVISO DE PRIVACIDAD ── -->
+      <div class="privacy-box">
+        <p><strong>Aviso de Privacidad</strong><br>
+        De conformidad con la <strong>LFPDPPP</strong>, sus datos serán utilizados exclusivamente para la gestión de su inscripción y trayectoria académica. No serán compartidos con terceros sin su consentimiento, salvo obligación legal. Usted tiene derechos ARCO sobre sus datos personales.</p>
+        <div class="check-row">
+          <input type="checkbox" id="priv-prepa" name="acepta_privacidad" value="Sí" required>
+          <label for="priv-prepa">He leído y acepto el Aviso de Privacidad y doy mi consentimiento para el tratamiento de mis datos personales. <span class="req">*</span></label>
+        </div>
+      </div>
+
+      <!-- ── CONFORMIDAD CONDICIONES ── -->
+      <div class="privacy-box terms-accept-box">
+        <div class="terms-accept-header">✍️ Firma de Conformidad</div>
+        <p class="terms-accept-intro">El suscrito, alumno (o padre/tutor en su caso), declara haber leído la totalidad de los lineamientos y condiciones generales y manifiesta su conformidad con su contenido y alcances:</p>
+        <div class="check-col">
+          <div class="check-row">
+            <input type="checkbox" id="conf-costos" name="conf_costos" value="Sí" required>
+            <label for="conf-costos">Acepto los costos del programa ($600 inscripción, $350/semana × 24 semanas, $6,000 examen) y entiendo que son requisito para presentar el examen. <span class="req">*</span></label>
+          </div>
+          <div class="check-row" style="margin-top:12px">
+            <input type="checkbox" id="conf-requisitos" name="conf_requisitos" value="Sí" required>
+            <label for="conf-requisitos">Entiendo y acepto los requisitos de documentación y el mínimo del 80% de asistencias. Conozco que sin cumplirlos no podré presentar el examen y no habrá lugar a reembolso. <span class="req">*</span></label>
+          </div>
+          <div class="check-row" style="margin-top:12px">
+            <input type="checkbox" id="conf-tiempos" name="conf_tiempos" value="Sí" required>
+            <label for="conf-tiempos">Estoy informado/a de los tiempos del proceso (registro 30 días antes, resultados 30 días hábiles después, certificado hasta 6 meses), y que la entrega del certificado depende de la DGB/SEP. <span class="req">*</span></label>
+          </div>
+          <div class="check-row" style="margin-top:12px">
+            <input type="checkbox" id="conf-conducta" name="conf_conducta" value="Sí" required>
+            <label for="conf-conducta">Acepto que el incumplimiento de asistencias, requisitos o conducta contraria a los valores institucionales implica la pérdida total de derechos sobre el examen y cualquier reembolso económico. <span class="req">*</span></label>
+          </div>
+        </div>
+        <div class="firma-row">
+          <div class="firma-field">
+            <label>Nombre completo del alumno <span class="req">*</span></label>
+            <input type="text" name="firma_alumno" placeholder="Escribe tu nombre completo como firma de conformidad" required>
+          </div>
+          <div class="firma-field">
+            <label>Nombre del padre/tutor <span style="font-size:11px;color:var(--slate)">(si el alumno es menor de edad)</span></label>
+            <input type="text" name="firma_tutor" placeholder="Nombre completo del padre o tutor">
+          </div>
+        </div>
+      </div>
+
+      <div class="privacy-box" style="background:#fff8e8;border-color:#e8c96a;">
+        <div class="check-row">
+          <input type="checkbox" id="veraz-prepa" name="datos_veraces" value="Sí" required>
+          <label for="veraz-prepa">Declaro que la información proporcionada en esta solicitud es verídica. <span class="req">*</span></label>
+        </div>
+      </div>
+
+      <div class="submit-wrap">
+        <button type="submit" class="btn-submit" id="btn-prepa">
+          <span class="btn-text">Enviar Solicitud de Inscripción</span>
+          <span class="spinner" id="spin-prepa"></span>
+        </button>
+        <p class="note">Al enviar, recibirá una confirmación en su correo electrónico.</p>
+        <div class="msg-box" id="msg-prepa"></div>
+      </div>
+    </form>
+  </div>
+
+</div><!-- /card -->
+
+<footer>
+  <p>Estudios y Certificaciones México &nbsp;·&nbsp; Ficha de Inscripción Oficial</p>
+  <p style="margin-top:6px">La información proporcionada es tratada con estricta confidencialidad conforme a la LFPDPPP.</p>
+</footer>
+
+<script>
+// ─────────────────────────────────────────────
+//  ⚠️  CONFIGURA ESTA URL ANTES DE PUBLICAR
+//  Sustituye con tu URL de Google Apps Script
+// ─────────────────────────────────────────────
+const SCRIPT_URL_SEC   = 'TU_URL_APPS_SCRIPT_SECUNDARIA_AQUI';
+const SCRIPT_URL_PREPA = 'TU_URL_APPS_SCRIPT_PREPA_AQUI';
+// (pueden ser la misma URL si un solo script maneja ambos)
+
+function selectLevel(level) {
+  document.querySelectorAll('.level-tab').forEach(t => t.classList.remove('active'));
+  document.querySelector(`[data-level="${level}"]`).classList.add('active');
+  document.querySelectorAll('.form-card').forEach(f => f.classList.remove('visible'));
+  document.getElementById(`form-${level}`).classList.add('visible');
+  document.getElementById(`form-${level}`).scrollIntoView({ behavior:'smooth', block:'start' });
+}
+
+function submitForm(e, level) {
+  e.preventDefault();
+  const form   = document.getElementById(`frm-${level}`);
+  const btn    = document.getElementById(`btn-${level}`);
+  const spin   = document.getElementById(`spin-${level}`);
+  const msg    = document.getElementById(`msg-${level}`);
+  const url    = level === 'sec' ? SCRIPT_URL_SEC : SCRIPT_URL_PREPA;
+
+  // UI: loading state
+  btn.disabled = true;
+  btn.querySelector('.btn-text').style.display = 'none';
+  spin.style.display = 'block';
+  msg.className = 'msg-box';
+
+  const data = new FormData(form);
+  data.append('nivel', level === 'sec' ? 'Secundaria' : 'Preparatoria');
+  data.append('timestamp', new Date().toLocaleString('es-MX'));
+
+  fetch(url, { method:'POST', body: data })
+    .then(r => r.text())
+    .then(res => {
+      msg.textContent = '✅ ¡Solicitud enviada con éxito! En breve recibirá un correo de confirmación. Guarde esta pantalla como comprobante.';
+      msg.className = 'msg-box success visible';
+      form.reset();
+    })
+    .catch(() => {
+      msg.textContent = '❌ Ocurrió un error al enviar. Por favor intente de nuevo o contáctenos directamente.';
+      msg.className = 'msg-box error visible';
+    })
+    .finally(() => {
+      btn.disabled = false;
+      btn.querySelector('.btn-text').style.display = 'inline';
+      spin.style.display = 'none';
+    });
+}
+
+// Auto-uppercase CURP
+document.querySelectorAll('input[name=curp]').forEach(el => {
+  el.addEventListener('input', () => el.value = el.value.toUpperCase());
+});
+
+// Auto-calculate age from DOB
+document.querySelectorAll('input[name=fecha_nacimiento]').forEach(el => {
+  el.addEventListener('change', function() {
+    const dob  = new Date(this.value);
+    const age  = Math.floor((Date.now() - dob) / (365.25*24*3600*1000));
+    const form = this.closest('form');
+    if (form) form.querySelector('input[name=edad]').value = age > 0 ? age : '';
+  });
+});
+</script>
+</body>
+</html>
